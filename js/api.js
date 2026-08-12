@@ -75,3 +75,70 @@ async function addCustomer(name) {
         name: name
     });
 }
+async function getUser2DashboardLists() {
+    return await sendRequest({
+        action: "getUser2DashboardLists"
+    });
+}
+
+async function saveUser2DailyEntry(payload) {
+    return await sendRequest({
+        action: "saveUser2DailyEntry",
+        payload: payload
+    });
+}
+async function getVehicleExpenseLists() {
+    return await sendRequest({
+        action: "getVehicleExpenseLists"
+    });
+}
+
+async function saveVehicleExpense(record) {
+    return await sendRequest({
+        action: "saveVehicleExpense",
+        record: record
+    });
+}
+async function getPlantDailyReportData() {
+    return await sendRequest({
+        action: "getPlantDailyReportData"
+    });
+}
+async function getVehicleExpensesReportData() {
+    return await sendRequest({
+        action: "getVehicleExpensesReportData"
+    });
+}
+async function addUser2MasterItem(type, value) {
+
+    return await sendRequest({
+
+        action: "addUser2MasterItem",
+
+        type: type,
+
+        value: value
+
+    });
+
+}
+async function saveUser3CatchingPlan(rows) {
+
+    return await sendRequest({
+
+        action: "saveUser3CatchingPlan",
+
+        rows: rows
+
+    });
+
+}
+async function getUser3ReportData() {
+
+    return await sendRequest({
+
+        action: "getUser3ReportData"
+
+    });
+
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Commercial & Buyback Catching Report</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/Logo.png" alt="IMO Chicken Logo">
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+            <a href="user3-dashboard.html" class="sidebar-link">
+                Live Bird Catching Plan
+            </a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+            <a href="user3-report.html" class="sidebar-link active">
+                Buyback Report
+            </a>
+        </nav>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <h1>Commercial & Buyback Catching Report</h1>
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="form-card">
+
+            <div class="report-toolbar">
+
+                <div>
+                    <h2>Buyback Catching Weekly Plan</h2>
+                </div>
+
+
+                <div class="report-filters">
+
+                    <input
+                        type="date"
+                        id="fromDate"
+                        title="From Date"
+                    >
+
+                    <input
+                        type="date"
+                        id="toDate"
+                        title="To Date"
+                    >
+
+                    <button
+                        id="filterBtn"
+                        class="report-btn"
+                    >
+                        Filter
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="report-btn"
+                    >
+                        Clear
+                    </button>
+
+                    <button
+                        id="refreshBtn"
+                        class="report-btn"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="reportMessage"
+                class="save-message"
+            ></div>
+
+
+            <div
+                id="reportLoading"
+                class="report-loading hidden"
+            >
+                Loading buyback report...
+            </div>
+
+
+            <div class="report-table-wrapper">
+
+                <table id="reportTable">
+
+                    <thead>
+
+                        <tr>
+                            <th>DATE</th>
+                            <th>BUY BACK</th>
+                            <th>PANNALA</th>
+                            <th>KOTADENIYAWA</th>
+                            <th>WEERAPOKUNA</th>
+                            <th>EPALADENIYA</th>
+                            <th>TOTAL</th>
+                            <th>IMO PLANT</th>
+                            <th>LIVE SALE</th>
+                            <th>REMARK</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="reportTableBody">
+                    </tbody>
+
+
+                    <tfoot>
+
+                        <tr class="grand-total-row">
+
+                            <td>GRAND TOTAL:</td>
+
+                            <td id="totalBuyback">
+                                0
+                            </td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td id="totalQty">
+                                0
+                            </td>
+
+                            <td id="totalImo">
+                                0
+                            </td>
+
+                            <td id="totalLive">
+                                0
+                            </td>
+
+                            <td></td>
+
+                        </tr>
+
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/user3-report.js"></script>
+
+</body>
+
+</html>

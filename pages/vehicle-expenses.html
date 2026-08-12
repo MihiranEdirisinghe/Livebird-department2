@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Expenses</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/Logo.png" alt="IMO Chicken Logo">
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="user2-dashboard.html" class="sidebar-link">
+                Plant Daily Birds Entry
+            </a>
+
+            <a href="vehicle-expenses.html" class="sidebar-link active">
+                Vehicle Expenses Input
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="plant-daily-report.html" class="sidebar-link">
+                Birds Received Report
+            </a>
+
+            <a href="vehicle-expenses-report.html" class="sidebar-link">
+                Vehicle Expenses Report
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">
+            SYSTEM
+        </p>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="user2-settings.html"
+                class="sidebar-link"
+            >
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <h1>Vehicle Expenses (Tea & Meal)</h1>
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="form-card">
+
+            <div class="form-card-title">
+                <h2>Vehicle Tea & Meal Expenses</h2>
+            </div>
+
+
+            <form id="vehicleExpenseForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+
+                        <input
+                            type="date"
+                            id="expenseDate"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="vehicleNo">Vehicle No</label>
+
+                        <select id="vehicleNo">
+                            <option value="">
+                                Select Vehicle
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="teaExpense">
+                            Tea Expenses (Rs.)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="teaExpense"
+                            placeholder="0.00"
+                            step="0.01"
+                            min="0"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="mealExpense">
+                            Meal Expenses (Rs.)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="mealExpense"
+                            placeholder="0.00"
+                            step="0.01"
+                            min="0"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="totalExpense">
+                            Total (Rs.)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="totalExpense"
+                            value="0.00"
+                            readonly
+                            class="readonly-field"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="saveMessage"
+                    class="save-message"
+                ></div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        id="saveBtn"
+                        class="save-btn"
+                    >
+                        Save Record
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- PREVIEW MODAL -->
+    <div id="previewModal" class="modal">
+
+        <div class="modal-card small-modal">
+
+            <h2>Confirm Expense Details</h2>
+
+            <div id="previewContent"></div>
+
+            <div style="
+                display:flex;
+                justify-content:flex-end;
+                gap:10px;
+                margin-top:22px;
+            ">
+
+                <button
+                    id="cancelPreviewBtn"
+                    class="cancel-btn"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirmSaveBtn"
+                    class="save-btn"
+                    type="button"
+                >
+                    Confirm & Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/vehicle-expenses.js"></script>
+
+</body>
+</html>

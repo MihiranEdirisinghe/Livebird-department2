@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Commercial & Buyback Catching Plan</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/user3-dashboard.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/Logo.png" alt="IMO Chicken Logo">
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+            <a href="user3-dashboard.html" class="sidebar-link active">
+                Live Bird Catching Plan
+            </a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+            <a href="user3-report.html" class="sidebar-link">
+                Buyback Report
+            </a>
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <h1>Commercial & Buyback Catching Plan Entry</h1>
+
+            <div class="header-user">
+                <span id="loggedUser">Logged in as:</span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+        </header>
+
+
+        <div class="user3-layout">
+
+            <!-- LEFT -->
+            <div class="user3-main-column">
+
+                <!-- DATE & BUYBACK -->
+                <section class="form-card">
+
+                    <div class="form-card-title">
+                        <h2>Date & Buy Back</h2>
+                    </div>
+
+                    <div class="user3-two-grid">
+
+                        <div class="form-group">
+                            <label for="entryDate">Date</label>
+
+                            <input
+                                type="date"
+                                id="entryDate"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="buyback">
+                                Buy Back
+                            </label>
+
+                            <input
+                                type="number"
+                                id="buyback"
+                                placeholder="0.00"
+                                min="0"
+                            >
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PANNALA -->
+                <section class="location-card">
+
+                    <div class="location-card-header">
+                        <h3>Pannala</h3>
+
+                        <button
+                            type="button"
+                            class="add-cage-btn"
+                            data-location="Pannala"
+                        >
+                            + Add Cage
+                        </button>
+                    </div>
+
+                    <div
+                        class="cage-container"
+                        id="pannalaCages"
+                    ></div>
+
+                    <div class="location-total">
+                        Pannala Total:
+                        <strong id="pannalaTotal">0</strong>
+                    </div>
+
+                </section>
+
+
+                <!-- KOTADENIYAWA -->
+                <section class="location-card">
+
+                    <div class="location-card-header">
+                        <h3>Kotadeniyawa</h3>
+
+                        <button
+                            type="button"
+                            class="add-cage-btn"
+                            data-location="Kotadeniyawa"
+                        >
+                            + Add Cage
+                        </button>
+                    </div>
+
+                    <div
+                        class="cage-container"
+                        id="kotadeniyawaCages"
+                    ></div>
+
+                    <div class="location-total">
+                        Kotadeniyawa Total:
+                        <strong id="kotadeniyawaTotal">0</strong>
+                    </div>
+
+                </section>
+
+
+                <!-- WEERAPOKUNA -->
+                <section class="location-card">
+
+                    <div class="location-card-header">
+                        <h3>Weerapokuna</h3>
+
+                        <button
+                            type="button"
+                            class="add-cage-btn"
+                            data-location="Weerapokuna"
+                        >
+                            + Add Cage
+                        </button>
+                    </div>
+
+                    <div
+                        class="cage-container"
+                        id="weerapokunaCages"
+                    ></div>
+
+                    <div class="location-total">
+                        Weerapokuna Total:
+                        <strong id="weerapokunaTotal">0</strong>
+                    </div>
+
+                </section>
+
+
+                <!-- EPALADENIYA -->
+                <section class="location-card">
+
+                    <div class="location-card-header">
+                        <h3>Epaladeniya</h3>
+
+                        <button
+                            type="button"
+                            class="add-cage-btn"
+                            data-location="Epaladeniya"
+                        >
+                            + Add Cage
+                        </button>
+                    </div>
+
+                    <div
+                        class="cage-container"
+                        id="epaladeniyaCages"
+                    ></div>
+
+                    <div class="location-total">
+                        Epaladeniya Total:
+                        <strong id="epaladeniyaTotal">0</strong>
+                    </div>
+
+                </section>
+
+
+                <!-- TOTAL DISTRIBUTION -->
+                <section class="form-card">
+
+                    <div class="form-card-title">
+                        <h2>Total & Distribution</h2>
+                    </div>
+
+                    <div class="user3-three-grid">
+
+                        <div class="form-group">
+
+                            <label for="totalQty">
+                                Total Qty (Auto)
+                            </label>
+
+                            <input
+                                type="text"
+                                id="totalQty"
+                                value="0"
+                                readonly
+                                class="readonly-field"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="imoPlant">
+                                IMO Plant
+                            </label>
+
+                            <input
+                                type="number"
+                                id="imoPlant"
+                                placeholder="0.00"
+                                min="0"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="liveSale">
+                                Live Sale (Auto)
+                            </label>
+
+                            <input
+                                type="text"
+                                id="liveSale"
+                                value="0"
+                                readonly
+                                class="readonly-field"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group user3-remark">
+
+                        <label for="remark">
+                            Remark
+                        </label>
+
+                        <input
+                            type="text"
+                            id="remark"
+                            placeholder="e.g. Poya Day"
+                        >
+
+                    </div>
+
+                </section>
+
+
+                <div
+                    id="saveMessage"
+                    class="save-message"
+                ></div>
+
+
+                <button
+                    id="saveAllBtn"
+                    type="button"
+                    class="save-all-btn"
+                >
+                    Save All to Google Sheet
+                </button>
+
+            </div>
+
+
+            <!-- RIGHT BUYBACK CALCULATOR -->
+            <aside class="buyback-calculator">
+
+                <h2>Buyback Calculator</h2>
+
+                <div class="form-group">
+
+                    <label for="totalBuyback">
+                        Total Buyback
+                    </label>
+
+                    <input
+                        type="number"
+                        id="totalBuyback"
+                        placeholder="e.g. 37331"
+                        min="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="dayCount">
+                        Day Count
+                    </label>
+
+                    <input
+                        type="number"
+                        id="dayCount"
+                        placeholder="e.g. 5"
+                        min="1"
+                    >
+
+                </div>
+
+
+                <div class="calculator-result">
+                    Per Day Value:
+                    <strong id="perDayValue">0</strong>
+                </div>
+
+
+                <button
+                    id="useBuybackBtn"
+                    type="button"
+                    class="use-value-btn"
+                >
+                    Use This Value
+                </button>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <!-- PREVIEW -->
+    <div id="previewModal" class="user3-modal">
+
+        <div class="user3-modal-card">
+
+            <div class="preview-header">
+
+                <h2>Confirm Entry Details</h2>
+
+                <button
+                    id="closePreviewBtn"
+                    type="button"
+                    class="preview-close-btn"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="previewContent"
+                class="preview-content"
+            ></div>
+
+
+            <div class="preview-actions">
+
+                <button
+                    id="cancelPreviewBtn"
+                    type="button"
+                    class="preview-cancel-btn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirmSaveBtn"
+                    type="button"
+                    class="preview-confirm-btn"
+                >
+                    Confirm & Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/user3-dashboard.js"></script>
+
+</body>
+</html>

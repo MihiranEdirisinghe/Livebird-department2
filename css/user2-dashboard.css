@@ -1,0 +1,446 @@
+/* =========================================
+   USER 2 - PLANT DAILY BIRDS ENTRY
+========================================= */
+
+.section-label {
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   HELPERS
+========================================= */
+
+.helper-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+
+/* =========================================
+   TRIP TIME
+========================================= */
+
+.trip-time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: end;
+}
+
+.time-row {
+    display: grid;
+    grid-template-columns: 1fr 85px;
+    gap: 8px;
+}
+
+
+/* =========================================
+   BATCH SECTION
+========================================= */
+
+.batch-section {
+    margin-top: 22px;
+}
+
+#batchContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+/* =========================================
+   BATCH CARD
+========================================= */
+
+.batch-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+.batch-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.batch-card-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1e293b;
+}
+
+.delete-batch-btn {
+    border: none;
+    background: #fef2f2;
+    color: #dc2626;
+
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.delete-batch-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* =========================================
+   BATCH GRID
+========================================= */
+
+.batch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+
+/* =========================================
+   ADD BATCH BUTTON
+========================================= */
+
+.add-batch-btn {
+    margin-top: 16px;
+
+    border: none;
+
+    background: #059669;
+    color: #ffffff;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+
+    transition: 0.2s ease;
+}
+
+.add-batch-btn:hover {
+    background: #047857;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   SAVE SECTION
+========================================= */
+
+.user2-save-section {
+    margin-top: 22px;
+    margin-bottom: 30px;
+}
+
+.save-all-btn {
+    width: 100%;
+
+    border: none;
+
+    background: #010853;
+    color: white;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(1, 8, 83, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.save-all-btn:hover {
+    background: #001a45;
+}
+
+.save-all-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   PREVIEW MODAL
+========================================= */
+
+.user2-modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+}
+
+.user2-modal.show {
+    display: flex;
+}
+
+.user2-modal-card {
+    width: 100%;
+    max-width: 720px;
+
+    max-height: 88vh;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+}
+
+
+/* =========================================
+   PREVIEW HEADER
+========================================= */
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.preview-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #1e293b;
+}
+
+.preview-close-btn {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.preview-close-btn:hover {
+    background: #e2e8f0;
+}
+
+
+/* =========================================
+   PREVIEW CONTENT
+========================================= */
+
+.preview-content {
+    padding: 20px 22px;
+
+    max-height: 60vh;
+
+    overflow-y: auto;
+}
+
+.preview-trip-card {
+    padding: 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    margin-bottom: 16px;
+}
+
+.preview-trip-card p {
+    margin: 5px 0;
+
+    font-size: 13px;
+
+    color: #475569;
+}
+
+.preview-trip-card strong {
+    color: #1e293b;
+}
+
+
+/* =========================================
+   PREVIEW BATCH
+========================================= */
+
+.preview-batch-card {
+    padding: 14px;
+
+    margin-top: 10px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    background: rgba(1, 8, 83, 0.04);
+}
+
+.preview-batch-card h3 {
+    margin: 0 0 10px;
+
+    font-size: 14px;
+
+    color: #010853;
+}
+
+.preview-batch-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+
+    font-size: 12px;
+
+    color: #475569;
+}
+
+
+/* =========================================
+   PREVIEW ACTIONS
+========================================= */
+
+.preview-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 16px 22px;
+
+    border-top: 1px solid #e2e8f0;
+
+    background: #ffffff;
+}
+
+.preview-cancel-btn {
+    border: none;
+
+    background: #e5e7eb;
+    color: #374151;
+
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.preview-confirm-btn {
+    border: none;
+
+    background: #059669;
+    color: #ffffff;
+
+    padding: 10px 18px;
+
+    border-radius: 9px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.preview-confirm-btn:hover {
+    background: #047857;
+}
+
+.preview-confirm-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .batch-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .helper-grid,
+    .trip-time-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .batch-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-batch-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Plant Daily Birds Entry Portal</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/user2-dashboard.css">
+</head>
+
+
+<body class="dashboard-page">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="../assets/Logo.png"
+                alt="IMO Chicken Logo"
+            >
+
+            <h2>Live Bird Department</h2>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <p class="sidebar-section-title">
+            DATA INPUT
+        </p>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="user2-dashboard.html"
+                class="sidebar-link active"
+            >
+                Plant Daily Birds Entry
+            </a>
+
+            <a
+                href="vehicle-expenses.html"
+                class="sidebar-link"
+            >
+                Vehicle Expenses Input
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <p class="sidebar-section-title">
+            REPORTS
+        </p>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="plant-daily-report.html"
+                class="sidebar-link"
+            >
+                Birds Received Report
+            </a>
+
+            <a
+                href="vehicle-expenses-report.html"
+                class="sidebar-link"
+            >
+                Vehicle Expenses Report
+            </a>
+
+        </nav>
+        
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">
+            SYSTEM
+        </p>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="user2-settings.html"
+                class="sidebar-link"
+            >
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <h1>
+                Plant Daily Birds Entry Portal
+            </h1>
+
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             TRIP DETAILS
+        ====================================== -->
+
+        <section class="form-card">
+
+            <div class="form-card-title">
+
+                <h2>
+                    Trip & Vehicle Details
+                </h2>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label for="tripDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="tripDate"
+                    >
+
+                </div>
+
+
+
+                <!-- VEHICLE -->
+
+                <div class="form-group">
+
+                    <label for="vehicleNumber">
+                        Vehicle Number
+                    </label>
+
+                    <select id="vehicleNumber">
+
+                        <option value="">
+                            Select Vehicle
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DRIVER -->
+
+                <div class="form-group">
+
+                    <label for="driverName">
+                        Driver Name
+                    </label>
+
+                    <select id="driverName">
+
+                        <option value="">
+                            Select Driver
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DOA -->
+
+                <div class="form-group">
+
+                    <label for="doa">
+                        DOA (Dead On Arrival)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="doa"
+                        placeholder="0"
+                        min="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HELPERS -->
+
+            <div class="section-label">
+                Helpers Name (Select up to 3)
+            </div>
+
+
+            <div class="helper-grid">
+
+                <div class="form-group">
+
+                    <select id="helper1">
+
+                        <option value="">
+                            Helper 1
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <select id="helper2">
+
+                        <option value="">
+                            Helper 2
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <select id="helper3">
+
+                        <option value="">
+                            Helper 3
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TRIP TIME -->
+
+            <div class="section-label">
+                Trip Time Calculation (HH:MM & AM/PM)
+            </div>
+
+
+            <div class="trip-time-grid">
+
+
+                <!-- OUT TIME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Out Time
+                    </label>
+
+                    <div class="time-row">
+
+                        <input
+                            type="text"
+                            id="outTime"
+                            placeholder="04:28"
+                        >
+
+                        <select id="outAmPm">
+
+                            <option value="AM">
+                                AM
+                            </option>
+
+                            <option value="PM" selected>
+                                PM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- IN TIME -->
+
+                <div class="form-group">
+
+                    <label>
+                        In Time
+                    </label>
+
+                    <div class="time-row">
+
+                        <input
+                            type="text"
+                            id="inTime"
+                            placeholder="08:23"
+                        >
+
+                        <select id="inAmPm">
+
+                            <option value="AM">
+                                AM
+                            </option>
+
+                            <option value="PM" selected>
+                                PM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL TIME -->
+
+                <div class="form-group">
+
+                    <label for="totalTripTime">
+                        Total Trip Time
+                    </label>
+
+                    <input
+                        type="text"
+                        id="totalTripTime"
+                        value="00:00:00"
+                        readonly
+                        class="readonly-field"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             BATCH SECTION
+        ====================================== -->
+
+        <section class="batch-section">
+
+            <div id="batchContainer">
+            </div>
+
+
+            <button
+                id="addBatchBtn"
+                type="button"
+                class="add-batch-btn"
+            >
+                + Add Another Batch
+            </button>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SAVE
+        ====================================== -->
+
+        <section class="user2-save-section">
+
+            <div
+                id="saveMessage"
+                class="save-message"
+            ></div>
+
+
+            <button
+                id="saveAllBtn"
+                class="save-all-btn"
+                type="button"
+            >
+                Save All to Google Sheet
+            </button>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================
+         PREVIEW MODAL
+    ====================================== -->
+
+    <div
+        id="previewModal"
+        class="user2-modal"
+    >
+
+        <div class="user2-modal-card">
+
+
+            <div class="preview-header">
+
+                <h2>
+                    Confirm Daily Entry Details
+                </h2>
+
+                <button
+                    id="closePreviewBtn"
+                    type="button"
+                    class="preview-close-btn"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="previewContent"
+                class="preview-content"
+            >
+            </div>
+
+
+            <div class="preview-actions">
+
+                <button
+                    id="cancelPreviewBtn"
+                    type="button"
+                    class="preview-cancel-btn"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    id="confirmSaveBtn"
+                    type="button"
+                    class="preview-confirm-btn"
+                >
+                    Confirm & Save All
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         SCRIPTS
+    ====================================== -->
+
+    <script src="../js/api.js"></script>
+    <script src="../js/user2-dashboard.js"></script>
+
+</body>
+
+</html>
