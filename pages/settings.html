@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>System Settings</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/settings.css">
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/logo.png" alt="Logo">
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="sidebar-link">
+                Daily Catching & Sales
+            </a>
+
+            <a href="bird-condition.html" class="sidebar-link">
+                Bird Condition & Defect
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="report.html" class="sidebar-link">
+                Catching Summ. Report
+            </a>
+
+            <a href="bird-condition-report.html" class="sidebar-link">
+                Bird Condition Report
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">SYSTEM</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="settings.html" class="sidebar-link active">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <h1>System Settings & Master Data Management</h1>
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="settings-grid">
+
+            <!-- ADD FARMER -->
+
+            <div class="settings-card">
+
+                <h2>Add New Farmer</h2>
+
+                <div class="form-group">
+
+                    <label for="farmerType">
+                        Farmer Type
+                    </label>
+
+                    <select id="farmerType">
+
+                        <option value="Ownfarm">
+                            Ownfarm
+                        </option>
+
+                        <option value="Buyback">
+                            Buyback
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="farmerName">
+                        Farmer Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="farmerName"
+                        placeholder="Enter Farmer Name"
+                    >
+
+                </div>
+
+
+                <div
+                    id="farmerMessage"
+                    class="save-message"
+                ></div>
+
+
+                <button
+                    id="saveFarmerBtn"
+                    class="save-btn"
+                >
+                    Save Farmer
+                </button>
+
+            </div>
+
+
+            <!-- ADD CUSTOMER -->
+
+            <div class="settings-card">
+
+                <h2>Add New Customer</h2>
+
+
+                <div class="form-group">
+
+                    <label for="customerName">
+                        Customer Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter Customer Name"
+                    >
+
+                </div>
+
+
+                <div
+                    id="customerMessage"
+                    class="save-message"
+                ></div>
+
+
+                <button
+                    id="saveCustomerBtn"
+                    class="save-btn"
+                >
+                    Save Customer
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/settings.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* ===============================
+   REPORT TOOLBAR
+================================ */
+
+.report-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.report-toolbar h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #1e293b;
+}
+
+
+/* ===============================
+   FILTERS
+================================ */
+
+.report-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.report-filters input {
+    height: 40px;
+    padding: 0 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    outline: none;
+    background: white;
+    color: #0f172a;
+    font-size: 13px;
+}
+
+.report-filters input:focus {
+    border-color: #1E5AA8;
+    box-shadow: 0 0 0 3px rgba(30, 90, 168, 0.10);
+}
+
+.report-btn {
+    border: none;
+    background: #010853;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.report-btn:hover {
+    background: #001a45;
+    transform: translateY(-1px);
+}
+
+.report-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ===============================
+   LOADING
+================================ */
+
+.report-loading {
+    padding: 16px;
+    text-align: center;
+    font-weight: 700;
+    color: #475569;
+}
+
+
+/* ===============================
+   TABLE WRAPPER
+================================ */
+
+.report-table-wrapper {
+    width: 100%;
+    max-height: 65vh;
+    overflow: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+
+/* ===============================
+   TABLE
+================================ */
+
+#reportTable {
+    width: 100%;
+    min-width: 1500px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+}
+
+#reportTable th,
+#reportTable td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+#reportTable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #010853;
+    color: white;
+    font-weight: 700;
+}
+
+#reportTable tbody tr:nth-child(odd) td {
+    background: #ffffff;
+}
+
+#reportTable tbody tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+#reportTable tbody tr:hover td {
+    background: #eff6ff;
+}
+
+
+/* ===============================
+   GRAND TOTAL ROW
+================================ */
+
+#reportTable tfoot td {
+    position: sticky;
+    bottom: 0;
+    z-index: 4;
+    background: #f1f5f9;
+    border-top: 2px solid #cbd5e1;
+    border-bottom: none;
+    font-weight: 800;
+}
+
+.grand-total-row td:first-child {
+    color: #1e293b;
+}
+
+#totalNob,
+#totalWeight,
+#totalAmount,
+#totalRejection {
+    color: #010853;
+}
+
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.report-empty-row td {
+    text-align: center !important;
+    padding: 28px !important;
+    color: #64748b;
+    font-weight: 600;
+    background: white !important;
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .report-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .report-filters {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .report-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .report-filters input,
+    .report-btn {
+        width: 100%;
+        border-radius: 9px;
+    }
+
+}

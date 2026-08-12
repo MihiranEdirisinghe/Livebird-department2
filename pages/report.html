@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Operations Summary Report</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/logo.png" alt="Logo">
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="sidebar-link">
+                Daily Catching & Sales
+            </a>
+
+            <a href="bird-condition.html" class="sidebar-link">
+                Bird Condition & Defect
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="report.html" class="sidebar-link active">
+                Catching Summ. Report
+            </a>
+
+            <a href="bird-condition-report.html" class="sidebar-link">
+                Bird Condition Report
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">SYSTEM</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="settings.html" class="sidebar-link">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <h1>Operations Summary Report</h1>
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="form-card">
+
+            <div class="report-toolbar">
+
+                <div>
+                    <h2>
+                        Masterdata with Bird Condition & Defect Details
+                    </h2>
+                </div>
+
+                <div class="report-filters">
+
+                    <input
+                        type="date"
+                        id="fromDate"
+                        title="From Date"
+                    >
+
+                    <input
+                        type="date"
+                        id="toDate"
+                        title="To Date"
+                    >
+
+                    <button
+                        id="filterBtn"
+                        class="report-btn"
+                    >
+                        Filter
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="report-btn"
+                    >
+                        Clear
+                    </button>
+
+                    <button
+                        id="refreshBtn"
+                        class="report-btn"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="reportMessage"
+                class="save-message"
+            ></div>
+
+
+            <div
+                id="reportLoading"
+                class="report-loading hidden"
+            >
+                Loading report data...
+            </div>
+
+
+            <div class="report-table-wrapper">
+
+                <table id="reportTable">
+
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>TYPE</th>
+                            <th>FARMER/LOCATION</th>
+                            <th>CAGE NO</th>
+                            <th>BATCH NO</th>
+                            <th>CUSTOMER</th>
+                            <th>NOB</th>
+                            <th>FINAL WEIGHT (KG)</th>
+                            <th>PRICE (RS.)</th>
+                            <th>BILL NO</th>
+                            <th>AMOUNT (RS.)</th>
+                            <th>AVG WEIGHT (KG)</th>
+                            <th>REJECTION WT</th>
+                            <th>REASON</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportTableBody">
+                    </tbody>
+
+                    <tfoot>
+                        <tr class="grand-total-row">
+
+                            <td>GRAND TOTAL:</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td id="totalNob">0</td>
+
+                            <td id="totalWeight">0.00</td>
+
+                            <td></td>
+                            <td></td>
+
+                            <td id="totalAmount">0.00</td>
+
+                            <td></td>
+
+                            <td id="totalRejection">
+                                0.00
+                            </td>
+
+                            <td></td>
+
+                        </tr>
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/report.js"></script>
+
+</body>
+</html>

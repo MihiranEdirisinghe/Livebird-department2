@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bird Condition Analysis Report</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/logo.png" alt="Logo">
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="sidebar-link">
+                Daily Catching & Sales
+            </a>
+
+            <a href="bird-condition.html" class="sidebar-link">
+                Bird Condition & Defect
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="report.html" class="sidebar-link">
+                Catching Summ. Report
+            </a>
+
+            <a href="bird-condition-report.html"
+               class="sidebar-link active">
+                Bird Condition Report
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">SYSTEM</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="settings.html" class="sidebar-link">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="dashboard-main">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <h1>Bird Condition Analysis Report</h1>
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- REPORT CARD -->
+        <section class="form-card">
+
+            <div class="report-toolbar">
+
+                <div>
+                    <h2>Bird Condition Log Summary</h2>
+                </div>
+
+
+                <div class="report-filters">
+
+                    <input
+                        type="date"
+                        id="fromDate"
+                        title="From Date"
+                    >
+
+                    <input
+                        type="date"
+                        id="toDate"
+                        title="To Date"
+                    >
+
+
+                    <button
+                        id="filterBtn"
+                        class="report-btn"
+                    >
+                        Filter
+                    </button>
+
+
+                    <button
+                        id="clearBtn"
+                        class="report-btn"
+                    >
+                        Clear
+                    </button>
+
+
+                    <button
+                        id="refreshBtn"
+                        class="report-btn"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="reportMessage"
+                class="save-message"
+            ></div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="reportLoading"
+                class="report-loading hidden"
+            >
+                Loading bird condition report...
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="report-table-wrapper">
+
+                <table id="reportTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>DATE</th>
+
+                            <th>FARMER NAME</th>
+
+                            <th>NOB</th>
+
+                            <th>WEIGHT (KG)</th>
+
+                            <th>AVERAGE WEIGHT</th>
+
+                            <th>REJECTION WEIGHT</th>
+
+                            <th>FINAL WEIGHT</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="reportTableBody">
+                    </tbody>
+
+
+                    <tfoot>
+
+                        <tr class="grand-total-row">
+
+                            <td>
+                                GRAND TOTAL:
+                            </td>
+
+                            <td></td>
+
+
+                            <td id="totalNob">
+                                0
+                            </td>
+
+
+                            <td id="totalWeight">
+                                0.00
+                            </td>
+
+
+                            <td id="totalAverage">
+                                0.00
+                            </td>
+
+
+                            <td id="totalRejection">
+                                0.00
+                            </td>
+
+
+                            <td id="totalFinalWeight">
+                                0.00
+                            </td>
+
+                        </tr>
+
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/bird-condition-report.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Bird Catching Record</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../assets/logo.png" alt="Logo">
+
+            <h2>Live Bird Department</h2>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="sidebar-link active">
+                Daily Catching & Sales
+            </a>
+
+            <a href="bird-condition.html" class="sidebar-link">
+                Bird Condition & Defect
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">REPORTS</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="report.html" class="sidebar-link">
+                Catching Summ. Report
+            </a>
+
+            <a href="bird-condition-report.html" class="sidebar-link">
+                Bird Condition Report
+            </a>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <p class="sidebar-section-title">SYSTEM</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="settings.html" class="sidebar-link">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <div>
+                <h1>Live Bird Catching Record</h1>
+            </div>
+
+            <div class="header-user">
+
+                <span id="loggedUser">
+                    Logged in as:
+                </span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="form-card">
+
+            <div class="form-card-title">
+
+                <h2>Daily Live Bird Catching & Sales Details</h2>
+
+            </div>
+
+
+            <form id="catchingForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="catchingDate">Catching Date</label>
+
+                        <input
+                            type="date"
+                            id="catchingDate"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="type">Type</label>
+
+                        <select id="type" required>
+                            <option value="">Select Type</option>
+                            <option value="Ownfarm">Ownfarm</option>
+                            <option value="Buyback">Buyback</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="farmerName">Farmer Name</label>
+
+                        <select id="farmerName" required>
+                            <option value="">Select Farmer</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group" id="cageContainer">
+                        <label for="cageNo">Cage No</label>
+
+                        <input
+                            type="text"
+                            id="cageNo"
+                            placeholder="Ex:- 1"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="batchNo">Batch No</label>
+
+                        <input
+                            type="text"
+                            id="batchNo"
+                            placeholder="Ex:- 1500"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+
+                        <select id="customerName" required>
+                            <option value="">Select Customer</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group hidden" id="batch2Container">
+                        <label for="batchNo2">Batch No 2</label>
+
+                        <input
+                            type="text"
+                            id="batchNo2"
+                            placeholder="Ex:- 1501"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="nob">No of Birds (NOB)</label>
+
+                        <input
+                            type="number"
+                            id="nob"
+                            placeholder="0"
+                            min="0"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="totalWeight">Total Weight (KG)</label>
+
+                        <input
+                            type="number"
+                            id="totalWeight"
+                            placeholder="0.00"
+                            step="0.01"
+                            min="0"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="sellingPrice">Selling Price (Rs.)</label>
+
+                        <input
+                            type="number"
+                            id="sellingPrice"
+                            placeholder="0.00"
+                            step="0.01"
+                            min="0"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="billNo">Bill No</label>
+
+                        <input
+                            type="text"
+                            id="billNo"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="totalAmount">Total Amount (Rs.)</label>
+
+                        <input
+                            type="text"
+                            id="totalAmount"
+                            value="0.00"
+                            readonly
+                            class="readonly-field"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="avgWeight">
+                            Avg Weight (KG / Bird)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="avgWeight"
+                            value="0.000"
+                            readonly
+                            class="readonly-field"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div id="saveMessage" class="save-message"></div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        id="saveBtn"
+                        class="save-btn"
+                    >
+                        Save Record
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/dashboard.js"></script>
+
+</body>
+</html>

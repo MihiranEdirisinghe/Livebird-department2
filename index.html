@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Bird Department</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         TOP NAVIGATION
+    ========================== -->
+    <header class="navbar">
+
+        <div class="company-info">
+            <h3>Imo Chicken & Agro (Pvt) Ltd.</h3>
+            <p>Trusted World Class Quality</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button id="infoBtn">Info</button>
+            <button id="contactBtn">Contact</button>
+            <button id="loginBtn">Log In</button>
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN LANDING SECTION
+    ========================== -->
+    <main class="hero">
+
+        <section class="hero-left">
+
+            <img
+                src="assets/logo.png"
+                alt="IMO Chicken Logo"
+                class="logo"
+            >
+
+            <h1>
+                Welcome To Live Bird Department
+            </h1>
+
+            <p>
+                Centralized Operational Tracking & Management Console
+            </p>
+
+            <button id="getStartedBtn" class="primary-btn">
+                Get Started / Log In
+            </button>
+
+        </section>
+
+
+        <section class="hero-right">
+
+            <img
+                src="assets/Office.png"
+                alt="Live Bird Department"
+                class="hero-image"
+            >
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
+
+        Copyright © 2026 | MIS Department | All Rights Reserved
+
+    </footer>
+
+
+    <!-- =========================
+         LOGIN MODAL
+    ========================== -->
+    <div id="loginModal" class="modal">
+
+        <div class="modal-card login-card">
+
+            <div class="login-header">
+
+                <div>
+                    <div class="lock-icon">🔒</div>
+
+                    <h2>Portal Access</h2>
+
+                    <p>
+                        Sign in to continue to your dashboard
+                    </p>
+                </div>
+
+                <img
+                    src="assets/chicken.png"
+                    alt="Chicken"
+                    class="chicken-image"
+                >
+
+            </div>
+
+
+            <div class="login-body">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                >
+
+
+                <p
+                    id="loginMessage"
+                    class="login-message"
+                ></p>
+
+
+                <button
+                    id="signInBtn"
+                    class="primary-btn full-width"
+                >
+                    Sign In
+                </button>
+
+
+                <button
+                    id="cancelLoginBtn"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INFO MODAL
+    ========================== -->
+    <div id="infoModal" class="modal">
+
+        <div class="modal-card small-modal">
+
+            <h2>ℹ️ About This System</h2>
+
+            <p>
+                This system was built to make daily record-keeping
+                quick, paperless, and hassle-free for the team.
+            </p>
+
+            <p>
+                It automates calculations such as total trip times,
+                average bird weights and expense totals.
+            </p>
+
+            <p>
+                All operational information is connected with
+                Google Sheets for centralized data management.
+            </p>
+
+            <div class="system-info">
+                <span>Version: 1.0.0</span>
+                <span>Maintained by: MIS Department</span>
+            </div>
+
+            <button
+                class="close-btn"
+                data-close="infoModal"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONTACT MODAL
+    ========================== -->
+    <div id="contactModal" class="modal">
+
+        <div class="modal-card small-modal">
+
+            <h2>📩 Contact Support</h2>
+
+            <p>
+                If you have any questions or need assistance,
+                please reach out to us.
+            </p>
+
+            <div class="contact-details">
+
+                <p>
+                    📧
+                    <a href="mailto:imochickenmis@gmail.com">
+                        imochickenmis@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    📞 +94 XX XXX XXXX
+                </p>
+
+            </div>
+
+            <button
+                class="close-btn"
+                data-close="contactModal"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+
+</body>
+
+</html>
