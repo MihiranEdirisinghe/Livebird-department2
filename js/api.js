@@ -142,3 +142,8 @@ async function getUser3ReportData() {
     });
 
 }
+async function getDefectReportData() {
+    return await sendRequest({
+        action: "getDefectReportData"
+    });
+}

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Management Analytics</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-analytics.css">
+
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+</head>
+
+
+<body class="dashboard-page admin-analytics-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="../assets/Logo.png"
+                alt="IMO Chicken Logo"
+            >
+
+            <h2>Live Bird Department</h2>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <p class="sidebar-section-title">
+            ADMIN ANALYTICS
+        </p>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="admin-analytics.html"
+                class="sidebar-link active"
+            >
+                Management Analytics
+            </a>
+
+
+            <a
+                href="imo-plant-report.html"
+                class="sidebar-link"
+            >
+                IMO Plant Report
+            </a>
+
+
+            <a
+                href="other-plants-report.html"
+                class="sidebar-link"
+            >
+                Other Plants Report
+            </a>
+
+
+            <a
+                href="own-farm-report.html"
+                class="sidebar-link"
+            >
+                Own Farm Specific Report
+            </a>
+
+
+            <a
+                href="birds-received-report.html"
+                class="sidebar-link"
+            >
+                Birds Received Report
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="dashboard-main">
+
+        <div class="admin-main">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <header class="admin-header analytics-fade-in">
+
+                <div class="admin-header-left">
+
+                    <div>
+
+                        <h1>
+                            Management Analytics & Operations Dashboard
+                        </h1>
+
+                        <p class="analytics-subtitle">
+                            Live Bird Department Performance Overview
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-header-user">
+
+                    <span
+                        id="loggedUser"
+                        class="admin-user-badge"
+                    >
+                        Logged in as:
+                    </span>
+
+
+                    <button
+                        id="logoutBtn"
+                        class="logout-btn"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 GLOBAL DATE FILTER
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-filter-card">
+
+                    <div>
+
+                        <div class="analytics-filter-title">
+                            Global Date Filters
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Filter dashboard analytics and detailed records
+                        </p>
+
+                    </div>
+
+
+                    <div class="analytics-filter-controls">
+
+                        <input
+                            type="date"
+                            id="fromDate"
+                            title="From Date"
+                        >
+
+                        <input
+                            type="date"
+                            id="toDate"
+                            title="To Date"
+                        >
+
+
+                        <button
+                            id="filterBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Filter
+                        </button>
+
+
+                        <button
+                            id="clearBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Clear
+                        </button>
+
+
+                        <button
+                            id="refreshBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Refresh
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="analyticsLoader"
+                    class="analytics-loader"
+                >
+                    Loading analytics data...
+                </div>
+
+
+                <div
+                    id="analyticsMessage"
+                    class="analytics-message"
+                ></div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 KPI CARDS
+            ================================================== -->
+
+            <section class="analytics-kpi-grid">
+
+
+                <!-- TOTAL BIRDS -->
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Total Birds (NOB)
+                            </div>
+
+                            <div
+                                id="kpiTotalBirds"
+                                class="analytics-kpi-value"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            N
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-kpi-breakdown">
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                Own Farm
+                            </span>
+
+                            <span
+                                id="kpiBirdsOwn"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                BuyBack
+                            </span>
+
+                            <span
+                                id="kpiBirdsBuyback"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- TOTAL FINAL WEIGHT -->
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Total Final Weight
+                            </div>
+
+                            <div
+                                id="kpiTotalWeight"
+                                class="analytics-kpi-value"
+                            >
+                                0.00 kg
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            W
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-kpi-breakdown">
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                Own Farm
+                            </span>
+
+                            <span
+                                id="kpiWeightOwn"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                BuyBack
+                            </span>
+
+                            <span
+                                id="kpiWeightBuyback"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- REJECTION -->
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Total Rejection WT
+                            </div>
+
+                            <div
+                                id="kpiTotalRejection"
+                                class="analytics-kpi-value"
+                            >
+                                0.00 kg
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            R
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-kpi-breakdown">
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                Own Farm
+                            </span>
+
+                            <span
+                                id="kpiRejectionOwn"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                BuyBack
+                            </span>
+
+                            <span
+                                id="kpiRejectionBuyback"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- AMOUNT -->
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Total Amount (Rs.)
+                            </div>
+
+                            <div
+                                id="kpiTotalAmount"
+                                class="analytics-kpi-value"
+                            >
+                                0.00
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            Rs
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-kpi-breakdown">
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                Own Farm
+                            </span>
+
+                            <span
+                                id="kpiAmountOwn"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0.00
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-breakdown-item">
+
+                            <span class="analytics-kpi-breakdown-label">
+                                BuyBack
+                            </span>
+
+                            <span
+                                id="kpiAmountBuyback"
+                                class="analytics-kpi-breakdown-value"
+                            >
+                                0.00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CHART ROW 1
+            ================================================== -->
+
+            <section class="analytics-chart-grid-2">
+
+
+                <article class="analytics-chart-card analytics-fade-in">
+
+                    <div class="analytics-chart-header">
+
+                        <div class="analytics-chart-title">
+                            NOB by Farm Type (Ownfarm vs Buyback)
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="farmTypeChart"
+                        class="analytics-chart"
+                    ></div>
+
+                </article>
+
+
+
+                <article class="analytics-chart-card analytics-fade-in">
+
+                    <div class="analytics-chart-header">
+
+                        <div class="analytics-chart-title">
+                            Rejection Weights Overview
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="rejectionChart"
+                        class="analytics-chart"
+                    ></div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DAILY TREND
+            ================================================== -->
+
+            <section class="analytics-chart-card analytics-fade-in">
+
+                <div class="analytics-chart-header">
+
+                    <div>
+
+                        <div class="analytics-chart-title">
+                            Daily Trend (Current Month) — NOB, Weight & Avg Weight
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Current calendar month operational movement
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="dailyTrendChart"
+                    class="analytics-chart tall"
+                ></div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CUSTOMER SHARE + SUMMARY
+            ================================================== -->
+
+            <section class="analytics-chart-grid-2">
+
+
+                <article class="analytics-chart-card analytics-fade-in">
+
+                    <div class="analytics-chart-header">
+
+                        <div class="analytics-chart-title">
+                            Customer Share — IMO Plant vs Others
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="customerShareChart"
+                        class="analytics-chart"
+                    ></div>
+
+                </article>
+
+
+
+                <article class="analytics-card analytics-summary-card analytics-fade-in">
+
+                    <div class="analytics-section-heading">
+
+                        <div>
+
+                            <h3>
+                                Operational Performance Summary
+                            </h3>
+
+                            <p class="analytics-subtitle">
+                                Current operational indicators
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-summary-grid">
+
+
+                        <div class="analytics-summary-item">
+
+                            <span class="analytics-summary-label">
+                                Total NOB
+                            </span>
+
+                            <span
+                                id="summaryNob"
+                                class="analytics-summary-value"
+                            >
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-summary-item">
+
+                            <span class="analytics-summary-label">
+                                Total Weight
+                            </span>
+
+                            <span
+                                id="summaryWeight"
+                                class="analytics-summary-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-summary-item">
+
+                            <span class="analytics-summary-label">
+                                Total Amount
+                            </span>
+
+                            <span
+                                id="summaryAmount"
+                                class="analytics-summary-value"
+                            >
+                                0.00
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-summary-item">
+
+                            <span class="analytics-summary-label">
+                                Avg Weight (kg)
+                            </span>
+
+                            <span
+                                id="summaryAvgWeight"
+                                class="analytics-summary-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-summary-item">
+
+                            <span class="analytics-summary-label">
+                                Avg Amount (Rs.)
+                            </span>
+
+                            <span
+                                id="summaryAvgAmount"
+                                class="analytics-summary-value"
+                            >
+                                0.00
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-summary-item">
+
+                            <span class="analytics-summary-label">
+                                Current Month Rej. WT
+                            </span>
+
+                            <span
+                                id="summaryMonthRejection"
+                                class="analytics-summary-value"
+                            >
+                                0.00 kg
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MASTER TABLE
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-section-heading">
+
+                    <div>
+
+                        <h2>
+                            Detailed Master Records & Logs
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Complete operational transaction records
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-table-wrapper">
+
+                    <table class="analytics-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>DATE</th>
+                                <th>TYPE</th>
+                                <th>FARMER / LOCATION</th>
+                                <th>CAGE NO</th>
+                                <th>BATCH NO</th>
+                                <th>CUSTOMER</th>
+                                <th>NOB</th>
+                                <th>FINAL WEIGHT (KG)</th>
+                                <th>PRICE (RS.)</th>
+                                <th>BILL NO</th>
+                                <th>AMOUNT (RS.)</th>
+                                <th>AVG WEIGHT (KG)</th>
+                                <th>REJECTION WT</th>
+                                <th>REASON</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="analyticsTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="14"
+                                    class="analytics-empty-state"
+                                >
+                                    Loading records...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td>
+                                    GRAND TOTAL:
+                                </td>
+
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+
+                                <td
+                                    id="tableTotalNob"
+                                    class="numeric"
+                                >
+                                    0
+                                </td>
+
+
+                                <td
+                                    id="tableTotalWeight"
+                                    class="numeric"
+                                >
+                                    0.00
+                                </td>
+
+
+                                <td></td>
+                                <td></td>
+
+
+                                <td
+                                    id="tableTotalAmount"
+                                    class="numeric"
+                                >
+                                    0.00
+                                </td>
+
+
+                                <td></td>
+
+
+                                <td
+                                    id="tableTotalRejection"
+                                    class="numeric"
+                                >
+                                    0.00
+                                </td>
+
+
+                                <td></td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin-common.js"></script>
+    <script src="../js/admin-analytics.js"></script>
+
+</body>
+
+</html>
