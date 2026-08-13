@@ -2,59 +2,122 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Commercial & Buyback Catching Report</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Commercial & Buyback Catching Report
+    </title>
+
 
     <link rel="stylesheet" href="../css/style.css">
+
     <link rel="stylesheet" href="../css/dashboard.css">
+
     <link rel="stylesheet" href="../css/report.css">
+
 </head>
+
 
 <body class="dashboard-page">
 
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
     <aside class="sidebar">
 
+
         <div class="sidebar-brand">
-            <img src="../assets/Logo.png" alt="IMO Chicken Logo">
-            <h2>Live Bird Department</h2>
+
+            <img
+                src="../assets/Logo.png"
+                alt="IMO Chicken Logo"
+            >
+
+            <h2>
+                Live Bird Department
+            </h2>
+
         </div>
 
+
         <div class="sidebar-divider"></div>
 
-        <p class="sidebar-section-title">DATA INPUT</p>
+
+        <p class="sidebar-section-title">
+            DATA INPUT
+        </p>
+
 
         <nav class="sidebar-nav">
-            <a href="user3-dashboard.html" class="sidebar-link">
+
+            <a
+                href="user3-dashboard.html"
+                class="sidebar-link"
+            >
                 Live Bird Catching Plan
             </a>
+
         </nav>
+
 
         <div class="sidebar-divider"></div>
 
-        <p class="sidebar-section-title">REPORTS</p>
+
+        <p class="sidebar-section-title">
+            REPORTS
+        </p>
+
 
         <nav class="sidebar-nav">
-            <a href="user3-report.html" class="sidebar-link active">
-                Buyback Report
+
+            <a
+                href="user3-report.html"
+                class="sidebar-link active"
+            >
+                Live Bird Catching Plan Report
             </a>
+
         </nav>
+
 
     </aside>
 
 
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
     <main class="dashboard-main">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
 
         <header class="dashboard-header">
 
-            <h1>Commercial & Buyback Catching Report</h1>
+
+            <h1>
+                Commercial & Buyback Catching Report
+            </h1>
+
 
             <div class="header-user">
+
 
                 <span id="loggedUser">
                     Logged in as:
                 </span>
+
 
                 <button
                     id="logoutBtn"
@@ -63,21 +126,40 @@
                     Logout
                 </button>
 
+
             </div>
+
 
         </header>
 
 
+
+        <!-- =================================================
+             REPORT CARD
+        ================================================== -->
+
         <section class="form-card">
+
+
+            <!-- =================================================
+                 TOOLBAR
+            ================================================== -->
 
             <div class="report-toolbar">
 
+
                 <div>
-                    <h2>Buyback Catching Weekly Plan</h2>
+
+                    <h2>
+                         
+                    </h2>
+
                 </div>
 
 
+
                 <div class="report-filters">
+
 
                     <input
                         type="date"
@@ -85,11 +167,13 @@
                         title="From Date"
                     >
 
+
                     <input
                         type="date"
                         id="toDate"
                         title="To Date"
                     >
+
 
                     <button
                         id="filterBtn"
@@ -98,12 +182,14 @@
                         Filter
                     </button>
 
+
                     <button
                         id="clearBtn"
                         class="report-btn"
                     >
                         Clear
                     </button>
+
 
                     <button
                         id="refreshBtn"
@@ -112,10 +198,17 @@
                         Refresh
                     </button>
 
+
                 </div>
+
 
             </div>
 
+
+
+            <!-- =================================================
+                 MESSAGE
+            ================================================== -->
 
             <div
                 id="reportMessage"
@@ -123,84 +216,367 @@
             ></div>
 
 
+
+            <!-- =================================================
+                 LOADING
+            ================================================== -->
+
             <div
                 id="reportLoading"
                 class="report-loading hidden"
             >
-                Loading buyback report...
+                Loading Catching Plan report...
             </div>
 
 
-            <div class="report-table-wrapper">
 
-                <table id="reportTable">
+            <!-- =================================================
+                 NEW BUYBACK TABLE
+            ================================================== -->
+
+            <div class="buyback-table-wrapper">
+
+
+                <table
+                    id="reportTable"
+                    class="buyback-report-table"
+                >
+
+
+                    <!-- =========================================
+                         HEADER
+                    ========================================== -->
 
                     <thead>
 
-                        <tr>
-                            <th>DATE</th>
-                            <th>BUY BACK</th>
-                            <th>PANNALA</th>
-                            <th>KOTADENIYAWA</th>
-                            <th>WEERAPOKUNA</th>
-                            <th>EPALADENIYA</th>
-                            <th>TOTAL</th>
-                            <th>IMO PLANT</th>
-                            <th>LIVE SALE</th>
-                            <th>REMARK</th>
+
+                        <!-- MAIN HEADER -->
+
+                        <tr class="main-header-row">
+
+
+                            <th
+                                rowspan="2"
+                                class="date-col"
+                            >
+                                DATE
+                            </th>
+
+
+                            <th
+                                rowspan="2"
+                                class="buyback-col"
+                            >
+                                BUY BACK
+                            </th>
+
+
+
+                            <!-- PANNALA -->
+
+                            <th colspan="3">
+                                PANNALA
+                            </th>
+
+
+
+                            <!-- KOTADENIYAWA -->
+
+                            <th colspan="3">
+                                KOTADENIYAWA
+                            </th>
+
+
+
+                            <!-- WEERAPOKUNA -->
+
+                            <th colspan="3">
+                                WEERAPOKUNA
+                            </th>
+
+
+
+                            <!-- EPALADENIYA -->
+
+                            <th colspan="3">
+                                EPALADENIYA
+                            </th>
+
+
+
+                            <th rowspan="2">
+                                TOTAL
+                            </th>
+
+
+                            <th rowspan="2">
+                                IMO PLANT
+                            </th>
+
+
+                            <th rowspan="2">
+                                LIVE SALE
+                            </th>
+
+
+                            <th
+                                rowspan="2"
+                                class="remark-col"
+                            >
+                                REMARK
+                            </th>
+
+
                         </tr>
+
+
+
+                        <!-- SUB HEADER -->
+
+                        <tr class="sub-header-row">
+
+
+                            <!-- PANNALA -->
+
+                            <th>
+                                CAGE
+                            </th>
+
+                            <th>
+                                QTY
+                            </th>
+
+                            <th>
+                                SIZE
+                            </th>
+
+
+
+                            <!-- KOTADENIYAWA -->
+
+                            <th>
+                                CAGE
+                            </th>
+
+                            <th>
+                                QTY
+                            </th>
+
+                            <th>
+                                SIZE
+                            </th>
+
+
+
+                            <!-- WEERAPOKUNA -->
+
+                            <th>
+                                CAGE
+                            </th>
+
+                            <th>
+                                QTY
+                            </th>
+
+                            <th>
+                                SIZE
+                            </th>
+
+
+
+                            <!-- EPALADENIYA -->
+
+                            <th>
+                                CAGE
+                            </th>
+
+                            <th>
+                                QTY
+                            </th>
+
+                            <th>
+                                SIZE
+                            </th>
+
+
+                        </tr>
+
 
                     </thead>
 
 
-                    <tbody id="reportTableBody">
-                    </tbody>
+
+                    <!-- =========================================
+                         BODY
+                    ========================================== -->
+
+                    <tbody id="buybackReportBody">
 
 
-                    <tfoot>
+                        <tr>
 
-                        <tr class="grand-total-row">
-
-                            <td>GRAND TOTAL:</td>
-
-                            <td id="totalBuyback">
-                                0
+                            <td
+                                colspan="18"
+                                class="report-empty-cell"
+                            >
+                                Loading report data...
                             </td>
-
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                            <td id="totalQty">
-                                0
-                            </td>
-
-                            <td id="totalImo">
-                                0
-                            </td>
-
-                            <td id="totalLive">
-                                0
-                            </td>
-
-                            <td></td>
 
                         </tr>
 
+
+                    </tbody>
+
+
+
+                    <!-- =========================================
+                         GRAND TOTAL
+                    ========================================== -->
+
+                    <tfoot>
+
+
+                        <tr class="grand-total-row">
+
+
+                            <!-- GRAND TOTAL LABEL -->
+
+                            <td>
+                                GRAND TOTAL
+                            </td>
+
+
+
+                            <!-- BUY BACK TOTAL -->
+
+                            <td id="grandBuyback">
+                                0
+                            </td>
+
+
+
+                            <!-- PANNALA -->
+
+                            <td class="farm-total-label">
+                                TOTAL
+                            </td>
+
+                            <td id="grandPannala">
+                                0
+                            </td>
+
+                            <td>
+                                —
+                            </td>
+
+
+
+                            <!-- KOTADENIYAWA -->
+
+                            <td class="farm-total-label">
+                                TOTAL
+                            </td>
+
+                            <td id="grandKotadeniyawa">
+                                0
+                            </td>
+
+                            <td>
+                                —
+                            </td>
+
+
+
+                            <!-- WEERAPOKUNA -->
+
+                            <td class="farm-total-label">
+                                TOTAL
+                            </td>
+
+                            <td id="grandWeerapokuna">
+                                0
+                            </td>
+
+                            <td>
+                                —
+                            </td>
+
+
+
+                            <!-- EPALADENIYA -->
+
+                            <td class="farm-total-label">
+                                TOTAL
+                            </td>
+
+                            <td id="grandEpaladeniya">
+                                0
+                            </td>
+
+                            <td>
+                                —
+                            </td>
+
+
+
+                            <!-- TOTAL QTY -->
+
+                            <td id="grandTotalQty">
+                                0
+                            </td>
+
+
+
+                            <!-- IMO PLANT -->
+
+                            <td id="grandImoPlant">
+                                0
+                            </td>
+
+
+
+                            <!-- LIVE SALE -->
+
+                            <td id="grandLiveSale">
+                                0
+                            </td>
+
+
+
+                            <!-- REMARK -->
+
+                            <td>
+                                —
+                            </td>
+
+
+                        </tr>
+
+
                     </tfoot>
+
 
                 </table>
 
+
             </div>
 
+
         </section>
+
 
     </main>
 
 
+
+    <!-- =====================================================
+         JS
+    ====================================================== -->
+
     <script src="../js/api.js"></script>
+
     <script src="../js/user3-report.js"></script>
+
 
 </body>
 

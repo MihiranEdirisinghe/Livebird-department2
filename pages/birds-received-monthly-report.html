@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,13 +10,19 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Birds Received Analytics</title>
+    <title>
+        Monthly Birds Received Report
+    </title>
+
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/admin-analytics.css">
 
+
+    <!-- ECHARTS -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
 </head>
 
 
@@ -27,6 +34,7 @@
     ====================================================== -->
 
     <aside class="sidebar">
+
 
         <div class="sidebar-brand">
 
@@ -52,11 +60,12 @@
 
         <nav class="sidebar-nav">
 
+
             <a
                 href="admin-analytics.html"
                 class="sidebar-link"
             >
-                Live Bird Catching Report
+                Management Analytics
             </a>
 
 
@@ -64,7 +73,7 @@
                 href="imo-plant-report.html"
                 class="sidebar-link"
             >
-                Processing P.Received Report
+                IMO Plant Report
             </a>
 
 
@@ -86,14 +95,15 @@
 
             <a
                 href="birds-received-report.html"
-                class="sidebar-link active"
+                class="sidebar-link"
             >
-                Daily Birds Received Report
+                Birds Received Report
             </a>
+
 
             <a
                 href="birds-received-monthly-report.html"
-                class="sidebar-link"
+                class="sidebar-link active"
             >
                 Monthly Birds Report
             </a>
@@ -112,7 +122,9 @@
                 Vehicle Expense Analytics
             </a>
 
+
         </nav>
+
 
     </aside>
 
@@ -124,6 +136,7 @@
 
     <main class="dashboard-main">
 
+
         <div class="admin-main">
 
 
@@ -133,24 +146,29 @@
 
             <header class="admin-header analytics-fade-in">
 
+
                 <div class="admin-header-left">
+
 
                     <div>
 
                         <h1>
-                            Plant Daily Birds Analytics
+                            Monthly Birds Received Summary
                         </h1>
 
                         <p class="analytics-subtitle">
-                            Daily bird receiving, trip performance and weight analysis
+                            Consolidated daily receiving, trip and vehicle performance
                         </p>
 
                     </div>
 
+
                 </div>
 
 
+
                 <div class="admin-header-user">
+
 
                     <span
                         id="loggedUser"
@@ -167,38 +185,44 @@
                         Logout
                     </button>
 
+
                 </div>
+
 
             </header>
 
 
 
             <!-- =================================================
-                 DATE FILTER
+                 MONTH FILTER
             ================================================== -->
 
             <section class="analytics-card analytics-fade-in">
 
+
                 <div class="analytics-filter-card">
+
 
                     <div>
 
                         <div class="analytics-filter-title">
-                            Daily Date Filter
+                            Monthly Filter
                         </div>
 
                         <p class="analytics-subtitle">
-                            Filter daily receiving analytics by a specific date
+                            Select a month to consolidate daily receiving records
                         </p>
 
                     </div>
 
 
+
                     <div class="analytics-filter-controls">
 
+
                         <input
-                            type="date"
-                            id="selectedDate"
+                            type="month"
+                            id="monthFilter"
                         >
 
 
@@ -214,7 +238,7 @@
                             id="clearBtn"
                             class="analytics-pill-btn"
                         >
-                            Reset Date
+                            Clear
                         </button>
 
 
@@ -225,16 +249,19 @@
                             Refresh
                         </button>
 
+
                     </div>
 
+
                 </div>
+
 
 
                 <div
                     id="analyticsLoader"
                     class="analytics-loader"
                 >
-                    Loading Birds Received analytics...
+                    Loading monthly report...
                 </div>
 
 
@@ -243,166 +270,34 @@
                     class="analytics-message"
                 ></div>
 
-            </section>
-
-
-
-            <!-- =================================================
-                 KPI CARDS
-            ================================================== -->
-
-            <section class="analytics-kpi-grid">
-
-
-                <!-- TOTAL BIRDS -->
-
-                <article class="analytics-kpi-card analytics-fade-in">
-
-                    <div class="analytics-kpi-top">
-
-                        <div>
-
-                            <div class="analytics-kpi-label">
-                                Total Birds Received
-                            </div>
-
-                            <div
-                                id="kpiBirdsReceived"
-                                class="analytics-kpi-value"
-                            >
-                                0
-                            </div>
-
-                        </div>
-
-
-                        <div class="analytics-kpi-icon analytics-icon-pulse">
-                            N
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- TOTAL WEIGHT -->
-
-                <article class="analytics-kpi-card analytics-fade-in">
-
-                    <div class="analytics-kpi-top">
-
-                        <div>
-
-                            <div class="analytics-kpi-label">
-                                Total Live Weight
-                            </div>
-
-                            <div
-                                id="kpiLiveWeight"
-                                class="analytics-kpi-value"
-                            >
-                                0.00 kg
-                            </div>
-
-                        </div>
-
-
-                        <div class="analytics-kpi-icon analytics-icon-pulse">
-                            W
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- DOA -->
-
-                <article class="analytics-kpi-card analytics-fade-in">
-
-                    <div class="analytics-kpi-top">
-
-                        <div>
-
-                            <div class="analytics-kpi-label">
-                                Dead on Arrival (DOA)
-                            </div>
-
-                            <div
-                                id="kpiDoa"
-                                class="analytics-kpi-value"
-                            >
-                                0
-                            </div>
-
-                        </div>
-
-
-                        <div class="analytics-kpi-icon analytics-icon-pulse">
-                            !
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- AVG WEIGHT -->
-
-                <article class="analytics-kpi-card analytics-fade-in">
-
-                    <div class="analytics-kpi-top">
-
-                        <div>
-
-                            <div class="analytics-kpi-label">
-                                Actual Avg Weight
-                            </div>
-
-                            <div
-                                id="kpiAvgWeight"
-                                class="analytics-kpi-value"
-                            >
-                                0.000 kg
-                            </div>
-
-                        </div>
-
-
-                        <div class="analytics-kpi-icon analytics-icon-pulse">
-                            A
-                        </div>
-
-                    </div>
-
-                </article>
 
             </section>
 
 
 
             <!-- =================================================
-                 TRIP COMPARISON + VEHICLE SUMMARY
+                 MONTHLY TRIP ANALYTICS
             ================================================== -->
 
             <section class="analytics-chart-grid-main-side">
 
 
+                <!-- TRIP CHART -->
+
                 <article class="analytics-chart-card analytics-fade-in">
 
+
                     <div class="analytics-chart-header">
+
 
                         <div>
 
                             <div class="analytics-chart-title">
-                                Trip-wise Birds Comparison & DOA Trend
+                                Monthly Trip-wise Birds Comparison & DOA Trend
                             </div>
 
                             <p class="analytics-subtitle">
-                                Order birds vs available birds with DOA movement
+                                Order birds vs available birds and DOA for the selected month
                             </p>
 
                         </div>
@@ -415,6 +310,7 @@
                             DOA Ratio: 0.00%
                         </span>
 
+
                     </div>
 
 
@@ -423,32 +319,41 @@
                         class="analytics-chart tall"
                     ></div>
 
+
                 </article>
 
 
 
+                <!-- VEHICLE SUMMARY -->
+
                 <article class="analytics-card analytics-fade-in">
 
+
                     <div class="analytics-section-heading">
+
 
                         <div>
 
                             <h3>
-                                Vehicle Trips & Run Time
+                                Monthly Vehicle Trips & Run Time
                             </h3>
 
                             <p class="analytics-subtitle">
-                                Vehicle utilization summary
+                                Vehicle utilization for the selected month
                             </p>
 
                         </div>
 
+
                     </div>
+
 
 
                     <div class="analytics-table-wrapper">
 
+
                         <table class="analytics-table">
+
 
                             <thead>
 
@@ -486,185 +391,164 @@
 
                             </tbody>
 
+
                         </table>
 
+
                     </div>
+
 
                 </article>
 
-            </section>
-
-
-
-            <!-- =================================================
-                 BATCH WEIGHT CHART
-            ================================================== -->
-
-            <section class="analytics-chart-card analytics-fade-in">
-
-                <div class="analytics-chart-header">
-
-                    <div>
-
-                        <div class="analytics-chart-title">
-                            Batch-wise Expected vs Actual Average Weight
-                        </div>
-
-                        <p class="analytics-subtitle">
-                            Expected weight, actual weight and variance by batch
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="batchWeightChart"
-                    class="analytics-chart tall"
-                ></div>
 
             </section>
 
 
 
             <!-- =================================================
-                 DETAIL TABLE
+                 MONTHLY SUMMARY TABLE
             ================================================== -->
 
             <section class="analytics-card analytics-fade-in">
 
+
                 <div class="analytics-section-heading">
+
 
                     <div>
 
                         <h2>
-                            Plant Daily Birds Log Data
+                            Monthly Birds Received Report
                         </h2>
 
                         <p class="analytics-subtitle">
-                            Complete daily receiving transaction log
+                            One consolidated row per receiving date
                         </p>
 
                     </div>
 
+
                 </div>
+
 
 
                 <div class="analytics-table-wrapper">
 
+
                     <table class="analytics-table">
+
 
                         <thead>
 
+
                             <tr>
 
-                                <th>S/NO</th>
-                                <th>TRIP</th>
-                                <th>DATE</th>
-                                <th>BATCH NO</th>
-                                <th>VEHICLE</th>
-                                <th>DRIVER</th>
-                                <th>HELPERS</th>
-                                <th>LOCATION</th>
-                                <th>AGE</th>
-                                <th>EXP AVG</th>
-                                <th>ORDER</th>
-                                <th>AVAILABLE</th>
-                                <th>ACT AVG</th>
-                                <th>WEIGHT</th>
-                                <th>DIFF (KG)</th>
-                                <th>DOA</th>
-                                <th>OUT TIME</th>
-                                <th>IN TIME</th>
-                                <th>TRIP TIME</th>
+                                <th>
+                                    DATE
+                                </th>
+
+                                <th>
+                                    ORDER BIRDS
+                                </th>
+
+                                <th>
+                                    AVAILABLE BIRDS
+                                </th>
+
+                                <th>
+                                    WEIGHT (KG)
+                                </th>
+
+                                <th>
+                                    DOA
+                                </th>
 
                             </tr>
+
 
                         </thead>
 
 
-                        <tbody id="birdsTableBody">
+
+                        <tbody id="monthlyTableBody">
+
 
                             <tr>
 
                                 <td
-                                    colspan="19"
+                                    colspan="5"
                                     class="analytics-empty-state"
                                 >
-                                    Loading Birds Received records...
+                                    Loading monthly records...
                                 </td>
 
                             </tr>
+
 
                         </tbody>
 
 
+
                         <tfoot>
+
 
                             <tr>
 
+
                                 <td>
-                                    GRAND TOTAL:
+                                    MONTH TOTAL
                                 </td>
 
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
 
-
-                                <td id="totalOrderBirds">
+                                <td
+                                    id="monthTotalOrder"
+                                    class="numeric"
+                                >
                                     0
                                 </td>
 
 
-                                <td id="totalAvailableBirds">
+                                <td
+                                    id="monthTotalAvailable"
+                                    class="numeric"
+                                >
                                     0
                                 </td>
 
 
-                                <td id="totalAvgWeight">
-                                    0.000
-                                </td>
-
-
-                                <td id="totalWeight">
+                                <td
+                                    id="monthTotalWeight"
+                                    class="numeric"
+                                >
                                     0.00
                                 </td>
 
 
-                                <td id="totalWeightDiff">
-                                    0.00
-                                </td>
-
-
-                                <td id="totalDoa">
+                                <td
+                                    id="monthTotalDoa"
+                                    class="numeric"
+                                >
                                     0
                                 </td>
 
-
-                                <td></td>
-                                <td></td>
-                                <td></td>
 
                             </tr>
 
+
                         </tfoot>
+
 
                     </table>
 
+
                 </div>
+
 
             </section>
 
 
         </div>
+
 
     </main>
 
@@ -675,8 +559,11 @@
     ====================================================== -->
 
     <script src="../js/api.js"></script>
+
     <script src="../js/admin-common.js"></script>
-    <script src="../js/birds-received-report.js"></script>
+
+    <script src="../js/birds-received-monthly-report.js"></script>
+
 
 </body>
 

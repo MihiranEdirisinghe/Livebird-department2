@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
-    const reportTableBody =
-        document.getElementById("reportTableBody");
+    const reportBody =
+        document.getElementById("buybackReportBody");
 
     const reportLoading =
         document.getElementById("reportLoading");
@@ -41,17 +41,31 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("reportMessage");
 
 
-    const totalBuyback =
-        document.getElementById("totalBuyback");
+    // GRAND TOTAL ELEMENTS
 
-    const totalQty =
-        document.getElementById("totalQty");
+    const grandBuyback =
+        document.getElementById("grandBuyback");
 
-    const totalImo =
-        document.getElementById("totalImo");
+    const grandPannala =
+        document.getElementById("grandPannala");
 
-    const totalLive =
-        document.getElementById("totalLive");
+    const grandKotadeniyawa =
+        document.getElementById("grandKotadeniyawa");
+
+    const grandWeerapokuna =
+        document.getElementById("grandWeerapokuna");
+
+    const grandEpaladeniya =
+        document.getElementById("grandEpaladeniya");
+
+    const grandTotalQty =
+        document.getElementById("grandTotalQty");
+
+    const grandImoPlant =
+        document.getElementById("grandImoPlant");
+
+    const grandLiveSale =
+        document.getElementById("grandLiveSale");
 
 
     const loggedUser =
@@ -62,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // SESSION CHECK
+    // SESSION
     // =========================================================
 
     const sessionUser =
@@ -78,8 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    const user =
-        JSON.parse(sessionUser);
+    let user;
+
+    try {
+
+        user =
+            JSON.parse(sessionUser);
+
+    } catch (error) {
+
+        sessionStorage.removeItem(
+            "livebirdUser"
+        );
+
+        window.location.href =
+            "../index.html";
+
+        return;
+    }
 
 
     if (
@@ -110,15 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // INITIAL LOAD
+    // LOAD
     // =========================================================
 
     loadReport();
 
-
-    // =========================================================
-    // LOAD REPORT
-    // =========================================================
 
     async function loadReport() {
 
@@ -133,7 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 await getUser3ReportData();
 
 
-            if (!result.success) {
+            if (
+                !result ||
+                result.success === false
+            ) {
 
                 allRawData = [];
 
@@ -143,8 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 showMessage(
-                    result.message ||
-                    "Unable to load Buyback Report.",
+                    result?.message ||
+                    "Unable to load Live Bird Catching Plan Report.",
                     "error"
                 );
 
@@ -206,6 +235,21 @@ document.addEventListener("DOMContentLoaded", () => {
             toDateInput.value;
 
 
+        if (
+            fromDate &&
+            toDate &&
+            fromDate > toDate
+        ) {
+
+            showMessage(
+                "From Date cannot be later than To Date.",
+                "error"
+            );
+
+            return;
+        }
+
+
         let filteredRaw;
 
 
@@ -257,12 +301,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const groupedData =
-            groupByDate(filteredRaw);
+            groupByDate(
+                filteredRaw
+            );
 
 
-        renderTable(groupedData);
+        renderTable(
+            groupedData
+        );
 
-        updateTotals(groupedData);
+
+        updateTotals(
+            groupedData
+        );
 
 
         if (showNotice) {
@@ -278,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // GROUP RAW ROWS BY DATE
+    // GROUP RAW DATA BY DATE
     // =========================================================
 
     function groupByDate(rawRows) {
@@ -289,7 +340,9 @@ document.addEventListener("DOMContentLoaded", () => {
         rawRows.forEach(row => {
 
             const date =
-                normalizeDate(row.date);
+                normalizeDate(
+                    row.date
+                );
 
 
             if (!date) {
@@ -301,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 grouped[date] = {
 
-                    date: date,
+                    date,
 
                     buyback:
                         safeNumber(
@@ -326,9 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         Epaladeniya: []
 
-                    },
-
-                    qtySum: 0
+                    }
 
                 };
 
@@ -342,11 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             if (
-                LOCATIONS.includes(location) &&
-                (
-                    row.cage_no ||
-                    safeNumber(row.qty) !== 0
-                )
+                LOCATIONS.includes(location)
             ) {
 
                 const cageNo =
@@ -354,10 +401,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         row.cage_no || ""
                     ).trim();
 
+
                 const qty =
                     safeNumber(
                         row.qty
                     );
+
 
                 const size =
                     String(
@@ -365,37 +414,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     ).trim();
 
 
-                let cageText;
+                if (
+                    cageNo ||
+                    qty ||
+                    size
+                ) {
 
+                    grouped[date]
+                        .locations[location]
+                        .push({
 
-                if (cageNo) {
+                            cage:
+                                cageNo
+                                    ? `C${cageNo}`
+                                    : "—",
 
-                    cageText =
-                        `C${cageNo}:${formatWhole(qty)}`;
+                            qty,
 
+                            size:
+                                size || "—"
 
-                    if (size) {
-
-                        cageText +=
-                            `(${size})`;
-
-                    }
-
-                } else {
-
-                    cageText =
-                        formatWhole(qty);
+                        });
 
                 }
-
-
-                grouped[date]
-                    .locations[location]
-                    .push(cageText);
-
-
-                grouped[date]
-                    .qtySum += qty;
 
             }
 
@@ -404,55 +445,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result =
             Object.values(grouped)
-                .map(data => {
+                .map(item => {
 
-                    const total =
-                        data.buyback +
-                        data.qtySum;
+                    const pannalaTotal =
+                        sumLocationQty(
+                            item.locations.Pannala
+                        );
+
+                    const kotadeniyawaTotal =
+                        sumLocationQty(
+                            item.locations.Kotadeniyawa
+                        );
+
+                    const weerapokunaTotal =
+                        sumLocationQty(
+                            item.locations.Weerapokuna
+                        );
+
+                    const epaladeniyaTotal =
+                        sumLocationQty(
+                            item.locations.Epaladeniya
+                        );
+
+
+                    const farmTotal =
+                        pannalaTotal +
+                        kotadeniyawaTotal +
+                        weerapokunaTotal +
+                        epaladeniyaTotal;
+
+
+                    const totalQty =
+                        item.buyback +
+                        farmTotal;
 
 
                     const liveSale =
                         Math.max(
                             0,
-                            total - data.imoPlant
+                            totalQty -
+                            item.imoPlant
                         );
 
 
                     return {
 
                         date:
-                            data.date,
+                            item.date,
 
                         buyback:
-                            data.buyback,
+                            item.buyback,
 
                         pannala:
-                            data.locations
-                                .Pannala,
+                            item.locations.Pannala,
 
                         kotadeniyawa:
-                            data.locations
-                                .Kotadeniyawa,
+                            item.locations.Kotadeniyawa,
 
                         weerapokuna:
-                            data.locations
-                                .Weerapokuna,
+                            item.locations.Weerapokuna,
 
                         epaladeniya:
-                            data.locations
-                                .Epaladeniya,
+                            item.locations.Epaladeniya,
 
-                        total_qty:
-                            total,
+                        pannalaTotal,
 
-                        imo_plant:
-                            data.imoPlant,
+                        kotadeniyawaTotal,
 
-                        live_sale:
-                            liveSale,
+                        weerapokunaTotal,
+
+                        epaladeniyaTotal,
+
+                        totalQty,
+
+                        imoPlant:
+                            item.imoPlant,
+
+                        liveSale,
 
                         remark:
-                            data.remark || "-"
+                            item.remark || "—"
 
                     };
 
@@ -473,40 +545,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // TABLE
+    // LOCATION TOTAL
+    // =========================================================
+
+    function sumLocationQty(items) {
+
+        if (!Array.isArray(items)) {
+            return 0;
+        }
+
+
+        return items.reduce(
+            (total, item) =>
+                total +
+                safeNumber(
+                    item.qty
+                ),
+            0
+        );
+
+    }
+
+
+    // =========================================================
+    // RENDER TABLE
     // =========================================================
 
     function renderTable(data) {
 
-        reportTableBody.innerHTML = "";
+        reportBody.innerHTML = "";
 
 
         if (
-            !data ||
+            !Array.isArray(data) ||
             data.length === 0
         ) {
 
-            const row =
-                document.createElement("tr");
+            reportBody.innerHTML = `
 
+                <tr>
 
-            row.className =
-                "report-empty-row";
+                    <td
+                        colspan="18"
+                        class="report-empty-cell"
+                    >
+                        No Buyback Catching records found.
+                    </td>
 
-
-            row.innerHTML = `
-
-                <td colspan="10">
-                    No Buyback Catching records found.
-                </td>
+                </tr>
 
             `;
-
-
-            reportTableBody.appendChild(
-                row
-            );
-
 
             return;
         }
@@ -521,49 +609,70 @@ document.addEventListener("DOMContentLoaded", () => {
             row.innerHTML = `
 
                 <td>
-                    ${escapeHtml(record.date)}
+                    ${escapeHtml(
+                        record.date
+                    )}
                 </td>
+
 
                 <td>
-                    ${formatWhole(record.buyback)}
+                    ${formatWhole(
+                        record.buyback
+                    )}
                 </td>
 
-                <td class="location-detail-cell">
-                    ${formatLocation(record.pannala)}
-                </td>
 
-                <td class="location-detail-cell">
-                    ${formatLocation(record.kotadeniyawa)}
-                </td>
+                ${renderLocationColumns(
+                    record.pannala
+                )}
 
-                <td class="location-detail-cell">
-                    ${formatLocation(record.weerapokuna)}
-                </td>
 
-                <td class="location-detail-cell">
-                    ${formatLocation(record.epaladeniya)}
-                </td>
+                ${renderLocationColumns(
+                    record.kotadeniyawa
+                )}
 
-                <td>
-                    ${formatWhole(record.total_qty)}
-                </td>
 
-                <td>
-                    ${formatWhole(record.imo_plant)}
-                </td>
+                ${renderLocationColumns(
+                    record.weerapokuna
+                )}
 
-                <td>
-                    ${formatWhole(record.live_sale)}
-                </td>
+
+                ${renderLocationColumns(
+                    record.epaladeniya
+                )}
+
 
                 <td>
-                    ${escapeHtml(record.remark || "-")}
+                    ${formatWhole(
+                        record.totalQty
+                    )}
+                </td>
+
+
+                <td>
+                    ${formatWhole(
+                        record.imoPlant
+                    )}
+                </td>
+
+
+                <td>
+                    ${formatWhole(
+                        record.liveSale
+                    )}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(
+                        record.remark
+                    )}
                 </td>
 
             `;
 
 
-            reportTableBody.appendChild(
+            reportBody.appendChild(
                 row
             );
 
@@ -573,26 +682,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // LOCATION DISPLAY
+    // RENDER LOCATION AS 3 COLUMNS
     // =========================================================
 
-    function formatLocation(items) {
+    function renderLocationColumns(items) {
 
         if (
             !Array.isArray(items) ||
             items.length === 0
         ) {
 
-            return "-";
+            return `
+
+                <td>
+                    —
+                </td>
+
+                <td>
+                    —
+                </td>
+
+                <td>
+                    —
+                </td>
+
+            `;
 
         }
 
 
-        return items
-            .map(item =>
-                escapeHtml(item)
-            )
-            .join("<br>");
+        const cageHtml =
+            items.map(item => `
+
+                <div class="cage-line">
+                    ${escapeHtml(
+                        item.cage
+                    )}
+                </div>
+
+            `).join("");
+
+
+        const qtyHtml =
+            items.map(item => `
+
+                <div class="cage-line qty-line">
+                    ${formatWhole(
+                        item.qty
+                    )}
+                </div>
+
+            `).join("");
+
+
+        const sizeHtml =
+            items.map(item => `
+
+                <div class="cage-line size-line">
+                    ${escapeHtml(
+                        item.size
+                    )}
+                </div>
+
+            `).join("");
+
+
+        return `
+
+            <td>
+
+                <div class="cage-stack">
+                    ${cageHtml}
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <div class="cage-stack">
+                    ${qtyHtml}
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <div class="cage-stack">
+                    ${sizeHtml}
+                </div>
+
+            </td>
+
+        `;
 
     }
 
@@ -605,11 +788,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let buyback = 0;
 
-        let qty = 0;
+        let pannala = 0;
 
-        let imo = 0;
+        let kotadeniyawa = 0;
 
-        let live = 0;
+        let weerapokuna = 0;
+
+        let epaladeniya = 0;
+
+        let totalQty = 0;
+
+        let imoPlant = 0;
+
+        let liveSale = 0;
 
 
         data.forEach(row => {
@@ -619,35 +810,97 @@ document.addEventListener("DOMContentLoaded", () => {
                     row.buyback
                 );
 
-            qty +=
+
+            pannala +=
                 safeNumber(
-                    row.total_qty
+                    row.pannalaTotal
                 );
 
-            imo +=
+
+            kotadeniyawa +=
                 safeNumber(
-                    row.imo_plant
+                    row.kotadeniyawaTotal
                 );
 
-            live +=
+
+            weerapokuna +=
                 safeNumber(
-                    row.live_sale
+                    row.weerapokunaTotal
+                );
+
+
+            epaladeniya +=
+                safeNumber(
+                    row.epaladeniyaTotal
+                );
+
+
+            totalQty +=
+                safeNumber(
+                    row.totalQty
+                );
+
+
+            imoPlant +=
+                safeNumber(
+                    row.imoPlant
+                );
+
+
+            liveSale +=
+                safeNumber(
+                    row.liveSale
                 );
 
         });
 
 
-        totalBuyback.textContent =
-            formatWhole(buyback);
+        grandBuyback.textContent =
+            formatWhole(
+                buyback
+            );
 
-        totalQty.textContent =
-            formatWhole(qty);
 
-        totalImo.textContent =
-            formatWhole(imo);
+        grandPannala.textContent =
+            formatWhole(
+                pannala
+            );
 
-        totalLive.textContent =
-            formatWhole(live);
+
+        grandKotadeniyawa.textContent =
+            formatWhole(
+                kotadeniyawa
+            );
+
+
+        grandWeerapokuna.textContent =
+            formatWhole(
+                weerapokuna
+            );
+
+
+        grandEpaladeniya.textContent =
+            formatWhole(
+                epaladeniya
+            );
+
+
+        grandTotalQty.textContent =
+            formatWhole(
+                totalQty
+            );
+
+
+        grandImoPlant.textContent =
+            formatWhole(
+                imoPlant
+            );
+
+
+        grandLiveSale.textContent =
+            formatWhole(
+                liveSale
+            );
 
     }
 
@@ -669,9 +922,14 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-        renderTable(grouped);
+        renderTable(
+            grouped
+        );
 
-        updateTotals(grouped);
+
+        updateTotals(
+            grouped
+        );
 
 
         showMessage(
@@ -688,8 +946,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function refreshReport() {
 
-        refreshBtn.disabled =
-            true;
+        refreshBtn.disabled = true;
 
         refreshBtn.textContent =
             "Refreshing...";
@@ -708,8 +965,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } finally {
 
-            refreshBtn.disabled =
-                false;
+            refreshBtn.disabled = false;
 
             refreshBtn.textContent =
                 "Refresh";
@@ -720,7 +976,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // DATE NORMALIZATION
+    // DATE
     // =========================================================
 
     function normalizeDate(value) {
@@ -765,15 +1021,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const year =
             date.getFullYear();
 
+
         const month =
             String(
                 date.getMonth() + 1
-            ).padStart(2, "0");
+            ).padStart(
+                2,
+                "0"
+            );
+
 
         const day =
             String(
                 date.getDate()
-            ).padStart(2, "0");
+            ).padStart(
+                2,
+                "0"
+            );
 
 
         return `${year}-${month}-${day}`;
@@ -817,7 +1081,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return Math.round(
             safeNumber(value)
-        ).toLocaleString("en-US");
+        ).toLocaleString(
+            "en-US"
+        );
 
     }
 
@@ -859,6 +1125,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showLoading(show) {
 
+        if (!reportLoading) {
+            return;
+        }
+
+
         if (show) {
 
             reportLoading
@@ -877,12 +1148,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function showMessage(
-        message,
+        text,
         type
     ) {
 
+        if (!reportMessage) {
+            return;
+        }
+
+
         reportMessage.textContent =
-            message;
+            text;
 
 
         reportMessage.classList.remove(
@@ -899,6 +1175,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function clearMessage() {
+
+        if (!reportMessage) {
+            return;
+        }
+
 
         reportMessage.textContent =
             "";
@@ -933,10 +1214,6 @@ document.addEventListener("DOMContentLoaded", () => {
         refreshReport
     );
 
-
-    // =========================================================
-    // LOGOUT
-    // =========================================================
 
     logoutBtn.addEventListener(
         "click",

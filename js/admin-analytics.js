@@ -1,5 +1,5 @@
 // =========================================================
-// USER 4 - MANAGEMENT ANALYTICS
+// USER 4 - Live Bird Catching Report
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1605,7 +1605,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.error(
-                "Management Analytics load error:",
+                "Live Bird Catching Report load error:",
                 error
             );
 
@@ -1618,7 +1618,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             AdminCommon.showMessage(
                 message,
-                "Unable to load Management Analytics data.",
+                "Unable to load Live Bird Catching Report data.",
                 "error"
             );
 

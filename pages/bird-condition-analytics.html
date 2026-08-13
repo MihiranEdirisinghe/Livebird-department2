@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bird Condition & Rejection Analytics</title>
+
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-analytics.css">
+
+
+    <!-- ECHARTS -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+</head>
+
+
+<body class="dashboard-page admin-analytics-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-brand">
+
+            <img
+                src="../assets/Logo.png"
+                alt="IMO Chicken Logo"
+            >
+
+            <h2>
+                Live Bird Department
+            </h2>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <p class="sidebar-section-title">
+            ADMIN ANALYTICS
+        </p>
+
+
+        <nav class="sidebar-nav">
+
+
+            <a
+                href="admin-analytics.html"
+                class="sidebar-link"
+            >
+                Management Analytics
+            </a>
+
+
+            <a
+                href="imo-plant-report.html"
+                class="sidebar-link"
+            >
+                IMO Plant Report
+            </a>
+
+
+            <a
+                href="other-plants-report.html"
+                class="sidebar-link"
+            >
+                Other Plants Report
+            </a>
+
+
+            <a
+                href="own-farm-report.html"
+                class="sidebar-link"
+            >
+                Own Farm Specific Report
+            </a>
+
+
+            <a
+                href="birds-received-report.html"
+                class="sidebar-link"
+            >
+                Birds Received Report
+            </a>
+
+
+            <a
+                href="birds-received-monthly-report.html"
+                class="sidebar-link"
+            >
+                Monthly Birds Report
+            </a>
+
+
+            <a
+                href="bird-condition-analytics.html"
+                class="sidebar-link active"
+            >
+                Bird Condition Analytics
+            </a>
+
+            <a
+                href="vehicle-expenses-monthly-report.html"
+                class="sidebar-link"
+            >
+                Vehicle Expense Analytics
+            </a>
+
+
+        </nav>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="dashboard-main">
+
+
+        <div class="admin-main">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <header class="admin-header analytics-fade-in">
+
+
+                <div class="admin-header-left">
+
+                    <div>
+
+                        <h1>
+                            Bird Condition & Rejection Analytics
+                        </h1>
+
+                        <p class="analytics-subtitle">
+                            Rejection weight analysis by reason and detailed bird condition records
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-header-user">
+
+
+                    <span
+                        id="loggedUser"
+                        class="admin-user-badge"
+                    >
+                        Logged in as:
+                    </span>
+
+
+                    <button
+                        id="logoutBtn"
+                        class="logout-btn"
+                    >
+                        Logout
+                    </button>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- =================================================
+                 DATE FILTER
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+
+                <div class="analytics-filter-card">
+
+
+                    <div>
+
+                        <div class="analytics-filter-title">
+                            Report Period
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Select a date range to analyze bird condition and rejection records
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="analytics-filter-controls">
+
+
+                        <input
+                            type="date"
+                            id="fromDate"
+                            title="From Date"
+                        >
+
+
+                        <input
+                            type="date"
+                            id="toDate"
+                            title="To Date"
+                        >
+
+
+                        <button
+                            id="filterBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Filter
+                        </button>
+
+
+                        <button
+                            id="clearBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Clear
+                        </button>
+
+
+                        <button
+                            id="refreshBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Refresh
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div
+                    id="analyticsLoader"
+                    class="analytics-loader"
+                >
+                    Loading bird condition analytics...
+                </div>
+
+
+                <div
+                    id="analyticsMessage"
+                    class="analytics-message"
+                ></div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 REJECTION REASON CHART
+            ================================================== -->
+
+            <section class="analytics-chart-card analytics-fade-in">
+
+
+                <div class="analytics-chart-header">
+
+
+                    <div>
+
+                        <div class="analytics-chart-title">
+                            Rejection Weight by Reason
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Total rejection weight grouped by rejection reason
+                        </p>
+
+                    </div>
+
+
+                    <span
+                        id="chartTotalBadge"
+                        class="analytics-chart-badge"
+                    >
+                        Total Rejection: 0.00 kg
+                    </span>
+
+
+                </div>
+
+
+
+                <div
+                    id="reasonChart"
+                    class="analytics-chart tall"
+                ></div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DETAILED TABLE
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+
+                <!-- TABLE HEADER / REASON FILTER -->
+
+                <div class="analytics-section-heading">
+
+
+                    <div>
+
+                        <h2>
+                            Bird Condition Details
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Filter detailed records by rejection reason
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="analytics-filter-controls">
+
+
+                        <label for="reasonFilter">
+                            Reason
+                        </label>
+
+
+                        <select id="reasonFilter">
+
+                            <option value="">
+                                All Reasons
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- TABLE -->
+
+                <div class="analytics-table-wrapper">
+
+
+                    <table class="analytics-table">
+
+
+                        <thead>
+
+
+                            <tr>
+
+                                <th>
+                                    DATE
+                                </th>
+
+                                <th>
+                                    FARMER NAME
+                                </th>
+
+                                <th>
+                                    NOB
+                                </th>
+
+                                <th>
+                                    WEIGHT (KG)
+                                </th>
+
+                                <th>
+                                    AVERAGE WEIGHT
+                                </th>
+
+                                <th>
+                                    REJECTION WEIGHT
+                                </th>
+
+                                <th>
+                                    REASON
+                                </th>
+
+                                <th>
+                                    FINAL WEIGHT
+                                </th>
+
+                            </tr>
+
+
+                        </thead>
+
+
+
+                        <tbody id="conditionTableBody">
+
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="analytics-empty-state"
+                                >
+                                    Loading bird condition records...
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+
+
+                        <tfoot>
+
+
+                            <tr>
+
+
+                                <td>
+                                    TOTAL
+                                </td>
+
+
+                                <td>
+                                    —
+                                </td>
+
+
+                                <td id="totalNob">
+                                    0
+                                </td>
+
+
+                                <td id="totalWeight">
+                                    0.00
+                                </td>
+
+
+                                <td id="totalAverage">
+                                    0.00
+                                </td>
+
+
+                                <td id="totalRejection">
+                                    0.00
+                                </td>
+
+
+                                <td>
+                                    —
+                                </td>
+
+
+                                <td id="totalFinalWeight">
+                                    0.00
+                                </td>
+
+
+                            </tr>
+
+
+                        </tfoot>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="../js/api.js"></script>
+
+    <script src="../js/admin-common.js"></script>
+
+    <script src="../js/bird-condition-analytics.js"></script>
+
+
+</body>
+
+</html>

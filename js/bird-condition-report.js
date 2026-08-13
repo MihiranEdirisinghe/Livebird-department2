@@ -341,6 +341,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 </td>
 
                 <td>
+                ${escapeHtml(record.reason || "-")}
+                </td>
+
+                <td>
                     ${formatNumber(record.final_weight, 2)}
                 </td>
 

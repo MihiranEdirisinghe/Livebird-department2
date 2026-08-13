@@ -1358,7 +1358,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             /*
-             * Reuse the existing Birds Received report API.
+             * Reuse the existing Daily Birds Received Report API.
              *
              * If your api.js function has a slightly different
              * name, we only need to change this one call.

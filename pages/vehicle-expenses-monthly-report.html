@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Monthly Vehicle Expense Analytics</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-analytics.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+</head>
+
+
+<body class="dashboard-page admin-analytics-page">
+
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="../assets/Logo.png"
+                alt="IMO Chicken Logo"
+            >
+
+            <h2>
+                Live Bird Department
+            </h2>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <p class="sidebar-section-title">
+            ADMIN ANALYTICS
+        </p>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="admin-analytics.html" class="sidebar-link">
+                Management Analytics
+            </a>
+
+            <a href="imo-plant-report.html" class="sidebar-link">
+                IMO Plant Report
+            </a>
+
+            <a href="other-plants-report.html" class="sidebar-link">
+                Other Plants Report
+            </a>
+
+            <a href="own-farm-report.html" class="sidebar-link">
+                Own Farm Specific Report
+            </a>
+
+            <a href="birds-received-report.html" class="sidebar-link">
+                Birds Received Report
+            </a>
+
+            <a href="birds-received-monthly-report.html" class="sidebar-link">
+                Monthly Birds Report
+            </a>
+
+            <a href="bird-condition-analytics.html" class="sidebar-link">
+                Bird Condition Analytics
+            </a>
+
+            <a
+                href="vehicle-expenses-monthly-report.html"
+                class="sidebar-link active"
+            >
+                Vehicle Expense Analytics
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <main class="dashboard-main">
+
+
+        <div class="admin-main">
+
+
+            <header class="admin-header analytics-fade-in">
+
+                <div class="admin-header-left">
+
+                    <div>
+
+                        <h1>
+                            Monthly Vehicle Expense Analytics
+                        </h1>
+
+                        <p class="analytics-subtitle">
+                            Vehicle-wise tea, meal and trip cost performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-header-user">
+
+                    <span
+                        id="loggedUser"
+                        class="admin-user-badge"
+                    >
+                        Logged in as:
+                    </span>
+
+                    <button
+                        id="logoutBtn"
+                        class="logout-btn"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- FILTER -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-filter-card">
+
+                    <div>
+
+                        <div class="analytics-filter-title">
+                            Monthly Filter
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Select a month to analyze vehicle expenses and trip efficiency
+                        </p>
+
+                    </div>
+
+
+                    <div class="analytics-filter-controls">
+
+                        <input
+                            type="month"
+                            id="monthFilter"
+                        >
+
+                        <button
+                            id="filterBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Filter
+                        </button>
+
+                        <button
+                            id="clearBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Clear
+                        </button>
+
+                        <button
+                            id="refreshBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Refresh
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="analyticsLoader"
+                    class="analytics-loader"
+                >
+                    Loading vehicle expense analytics...
+                </div>
+
+
+                <div
+                    id="analyticsMessage"
+                    class="analytics-message"
+                ></div>
+
+            </section>
+
+
+
+            <!-- KPI CARDS -->
+
+            <section
+                class="analytics-kpi-grid"
+                style="grid-template-columns: repeat(3, minmax(0, 1fr));"
+            >
+
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Total Expenses
+                            </div>
+
+                            <div
+                                id="kpiTotalExpenses"
+                                class="analytics-kpi-value"
+                            >
+                                Rs. 0.00
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            Rs
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Tea Expenses
+                            </div>
+
+                            <div
+                                id="kpiTeaExpenses"
+                                class="analytics-kpi-value"
+                            >
+                                Rs. 0.00
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            T
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="analytics-kpi-card analytics-fade-in">
+
+                    <div class="analytics-kpi-top">
+
+                        <div>
+
+                            <div class="analytics-kpi-label">
+                                Meal Expenses
+                            </div>
+
+                            <div
+                                id="kpiMealExpenses"
+                                class="analytics-kpi-value"
+                            >
+                                Rs. 0.00
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-kpi-icon analytics-icon-pulse">
+                            M
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- CHART -->
+
+            <section class="analytics-chart-card analytics-fade-in">
+
+                <div class="analytics-chart-header">
+
+                    <div>
+
+                        <div class="analytics-chart-title">
+                            Vehicle-wise Tea vs Meal Expenses
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Monthly expense comparison by vehicle
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="vehicleExpenseChart"
+                    class="analytics-chart tall"
+                ></div>
+
+            </section>
+
+
+
+            <!-- SUMMARY TABLE -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-section-heading">
+
+                    <div>
+
+                        <h2>
+                            Monthly Vehicle Expense Efficiency Summary
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Expense performance compared with monthly vehicle trip count
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-table-wrapper">
+
+                    <table class="analytics-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>VEHICLE</th>
+                                <th>TRIP COUNT</th>
+                                <th>TEA EXPENSE</th>
+                                <th>MEAL EXPENSE</th>
+                                <th>TOTAL EXPENSE</th>
+                                <th>AVG EXPENSE / TRIP</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="summaryTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="analytics-empty-state"
+                                >
+                                    Loading vehicle summary...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td>
+                                    MONTH TOTAL
+                                </td>
+
+                                <td id="summaryTotalTrips">
+                                    0
+                                </td>
+
+                                <td id="summaryTotalTea">
+                                    0.00
+                                </td>
+
+                                <td id="summaryTotalMeal">
+                                    0.00
+                                </td>
+
+                                <td id="summaryTotalExpense">
+                                    0.00
+                                </td>
+
+                                <td id="summaryAvgExpense">
+                                    0.00
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- MAIN TABLE -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-section-heading">
+
+                    <div>
+
+                        <h2>
+                            Monthly Vehicle Expense Records
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Detailed tea and meal expense transactions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-table-wrapper">
+
+                    <table class="analytics-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>DATE</th>
+                                <th>VEHICLE</th>
+                                <th>TEA EXPENSE</th>
+                                <th>MEAL EXPENSE</th>
+                                <th>TOTAL EXPENSE</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="expenseTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="analytics-empty-state"
+                                >
+                                    Loading vehicle expenses...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td>
+                                    MONTH TOTAL
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td id="tableTotalTea">
+                                    0.00
+                                </td>
+
+                                <td id="tableTotalMeal">
+                                    0.00
+                                </td>
+
+                                <td id="tableTotalExpense">
+                                    0.00
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin-common.js"></script>
+    <script src="../js/vehicle-expenses-monthly-report.js"></script>
+
+</body>
+
+</html>

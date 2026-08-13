@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 showMessage(
                     result.message ||
-                    "Unable to load Plant Daily Birds Report.",
+                    "Unable to load  Daily Plant Received & Transport Dead Birds Report.",
                     "error"
                 );
 

@@ -28,6 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const monthFilter =
         document.getElementById("monthFilter");
 
+        const today =
+            new Date();
+
+        const currentMonth =
+            `${today.getFullYear()}-${String(
+                today.getMonth() + 1
+            ).padStart(2, "0")}`;
+
+        monthFilter.value =
+            currentMonth;
+
     const filterBtn =
         document.getElementById("filterBtn");
 
@@ -1741,9 +1752,9 @@ document.addEventListener("DOMContentLoaded", () => {
              * First load shows all Own Farm records.
              */
 
-            updateDashboard(
-                ownFarmData
-            );
+            applyFilter(false);
+
+            
 
 
             if (showSuccess) {

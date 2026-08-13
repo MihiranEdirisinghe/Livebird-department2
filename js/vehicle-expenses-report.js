@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 showMessage(
                     result.message ||
-                    "Unable to load vehicle expenses report.",
+                    "Unable to load Catching Team Expenses Report.",
                     "error"
                 );
 
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.error(
-                "Vehicle Expenses Report Error:",
+                "Catching Team Expenses Report Error:",
                 error
             );
 

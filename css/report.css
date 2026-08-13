@@ -144,7 +144,7 @@
     position: sticky;
     bottom: 0;
     z-index: 4;
-    background: #f1f5f9;
+    background: #fbfbfc;
     border-top: 2px solid #cbd5e1;
     border-bottom: none;
     font-weight: 800;
@@ -205,4 +205,343 @@
         border-radius: 9px;
     }
 
+}
+/* =========================================================
+   USER 3 - Live Bird Catching Plan Report TABLE
+========================================================= */
+
+.buyback-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 68vh;
+
+    border: 1px solid #dbe3ef;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+.buyback-report-table {
+    width: 100%;
+    min-width: 1550px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    font-size: 12px;
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.buyback-report-table thead th {
+    position: sticky;
+
+    background: #010853;
+    color: #ffffff;
+
+    text-align: center;
+
+    font-weight: 800;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
+    padding: 11px 9px;
+
+    white-space: nowrap;
+}
+
+
+.buyback-report-table .main-header-row th {
+    top: 0;
+    z-index: 8;
+
+    font-size: 12px;
+
+    letter-spacing: 0.3px;
+}
+
+
+.buyback-report-table .sub-header-row th {
+    top: 39px;
+    z-index: 7;
+
+    background: #06156f;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.buyback-report-table tbody td {
+    padding: 10px 9px;
+
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+
+    vertical-align: middle;
+
+    background: #ffffff;
+}
+
+
+.buyback-report-table tbody tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+
+.buyback-report-table tbody tr:hover td {
+    background: #eff6ff;
+}
+
+
+/* =========================================================
+   ALIGNMENT
+========================================================= */
+
+.buyback-report-table td:nth-child(1),
+.buyback-report-table td:nth-child(2),
+.buyback-report-table td:nth-child(4),
+.buyback-report-table td:nth-child(7),
+.buyback-report-table td:nth-child(10),
+.buyback-report-table td:nth-child(13),
+.buyback-report-table td:nth-child(15),
+.buyback-report-table td:nth-child(16),
+.buyback-report-table td:nth-child(17) {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* Cage columns */
+
+.buyback-report-table td:nth-child(3),
+.buyback-report-table td:nth-child(6),
+.buyback-report-table td:nth-child(9),
+.buyback-report-table td:nth-child(12) {
+    text-align: center;
+
+    font-weight: 500;
+
+    color: #000000;
+}
+
+
+/* Qty columns */
+
+.buyback-report-table td:nth-child(4),
+.buyback-report-table td:nth-child(7),
+.buyback-report-table td:nth-child(10),
+.buyback-report-table td:nth-child(13) {
+    text-align: center;
+
+    font-weight: 500;
+
+    color: #000000;
+}
+
+
+/* Size columns */
+
+.buyback-report-table td:nth-child(5),
+.buyback-report-table td:nth-child(8),
+.buyback-report-table td:nth-child(11),
+.buyback-report-table td:nth-child(14) {
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #000000;
+}
+
+
+/* =========================================================
+   MULTI-CAGE CELL
+========================================================= */
+
+.cage-stack {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.cage-line {
+    min-height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.qty-line {
+    justify-content: center;
+}
+
+
+.size-line {
+    justify-content: center;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.buyback-report-table tfoot td {
+    position: sticky;
+    bottom: 0;
+
+    z-index: 6;
+
+    padding: 11px 9px;
+
+    border-right: 1px solid #cbd5e1;
+    border-top: 2px solid #cbd5e1;
+
+    background: #eef2f7;
+
+    font-weight: 900;
+
+    color: #010853;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+.buyback-report-table .grand-total-row td:first-child {
+    background: #010853;
+    color: #ffffff;
+
+    text-align: left;
+
+    font-weight: 900;
+
+    letter-spacing: 0.3px;
+}
+
+
+.buyback-report-table .farm-total-label {
+    color: #64748b;
+
+    font-size: 9px;
+
+    letter-spacing: 0.6px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.report-empty-cell {
+    text-align: center !important;
+
+    padding: 28px !important;
+
+    color: #64748b;
+
+    background: #ffffff !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   WIDTHS
+========================================================= */
+
+.buyback-report-table .date-col {
+    min-width: 105px;
+}
+
+
+.buyback-report-table .buyback-col {
+    min-width: 100px;
+}
+
+
+.buyback-report-table .remark-col {
+    min-width: 150px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .buyback-table-wrapper {
+        max-height: 65vh;
+    }
+
+    .buyback-report-table {
+        min-width: 1400px;
+        font-size: 11px;
+    }
+
+    .buyback-report-table thead th,
+    .buyback-report-table tbody td,
+    .buyback-report-table tfoot td {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+}
+/* =========================================================
+   BUYBACK TABLE - CENTER EVERYTHING
+========================================================= */
+
+/* Header */
+.buyback-report-table thead th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Body */
+.buyback-report-table tbody td {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Cage / Qty / Size inner values */
+.buyback-report-table .cage-line,
+.buyback-report-table .qty-line,
+.buyback-report-table .size-line {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+/* Grand Total */
+.buyback-report-table tfoot td {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Grand Total first cell was previously left aligned */
+.buyback-report-table .grand-total-row td:first-child {
+    text-align: center !important;
 }
