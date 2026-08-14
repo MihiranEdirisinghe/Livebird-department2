@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "imoPlantReport"
+        );    
+
     const loader =
         document.getElementById("analyticsLoader");
 
@@ -1014,7 +1019,7 @@ document.addEventListener("DOMContentLoaded", () => {
             AdminCommon.renderEmptyRow(
                 imoTableBody,
                 14,
-                "No IMO Plant records found."
+                "No Imo Plant records found."
             );
 
         } else {
@@ -1218,7 +1223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             AdminCommon.showMessage(
                 message,
-                `Filtered ${filtered.length} IMO Plant records for selected month.`,
+                `Filtered ${filtered.length} Imo Plant records for selected month.`,
                 "success"
             );
 
@@ -1329,7 +1334,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 AdminCommon.showMessage(
                     message,
-                    `IMO Plant analytics refreshed successfully. ${imoPlantData.length} records loaded.`,
+                    `Imo Plant analytics refreshed successfully. ${imoPlantData.length} records loaded.`,
                     "success"
                 );
 
@@ -1339,7 +1344,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.error(
-                "IMO Plant load error:",
+                "Imo Plant load error:",
                 error
             );
 
@@ -1353,7 +1358,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             AdminCommon.showMessage(
                 message,
-                "Unable to load IMO Plant analytics data.",
+                "Unable to load Imo Plant analytics data.",
                 "error"
             );
 

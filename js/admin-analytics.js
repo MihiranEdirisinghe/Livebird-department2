@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "adminAnalytics"
+        );    
+
     const loader =
         document.getElementById("analyticsLoader");
 
@@ -521,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             value: 0,
 
                             name:
-                                "IMO Plant",
+                                "Imo Plant",
 
                             itemStyle: {
                                 color:
@@ -1090,7 +1095,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 ),
 
                             name:
-                                "IMO Plant",
+                                "Imo Plant",
 
                             itemStyle: {
                                 color:

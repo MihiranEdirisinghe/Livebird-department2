@@ -35,10 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("clearBtn");
 
     const refreshBtn =
-        document.getElementById("refreshBtn");
+        document.getElementById("refreshBtn");   
 
     const loader =
         document.getElementById("analyticsLoader");
+
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "birdsReceived"
+        );     
 
     const message =
         document.getElementById("analyticsMessage");
@@ -64,8 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // DEFAULT DATE = TODAY
     // =====================================================
 
+    if (!selectedDate.value) {
     selectedDate.value =
         AdminCommon.getToday();
+    }
 
 
     // =====================================================
@@ -522,7 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             maximumFractionDigits: 2
                         }
                     )
-                } MT`
+                } t`
 
                 : `${
                     AdminCommon.formatDecimal(
@@ -1358,7 +1365,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             /*
-             * Reuse the existing Daily Birds Received Report API.
+             * Reuse the existing Plant Received & DOA Report API.
              *
              * If your api.js function has a slightly different
              * name, we only need to change this one call.

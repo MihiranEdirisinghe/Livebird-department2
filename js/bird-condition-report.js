@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "birdsReceivedDaily"
+        );    
+
     const reportTableBody =
         document.getElementById("reportTableBody");
 

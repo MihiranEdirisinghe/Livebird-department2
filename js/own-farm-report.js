@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "ownFarmReport"
+        );    
+
     const loader =
         document.getElementById("analyticsLoader");
 
@@ -127,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             legend: {
                 data: [
-                    "To IMO Plant",
+                    "To Imo Plant",
                     "To Customers"
                 ]
             },
@@ -156,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             series: [
 
                 {
-                    name: "To IMO Plant",
+                    name: "To Imo Plant",
                     type: "bar",
                     data: [],
 
@@ -255,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         {
                             value: 0,
-                            name: "To IMO Plant",
+                            name: "To Imo Plant",
                             itemStyle: {
                                 color: "#010853"
                             }
@@ -863,7 +868,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 ),
 
                             name:
-                                "To IMO Plant",
+                                "To Imo Plant",
 
                             itemStyle: {
                                 color:
@@ -1482,7 +1487,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        // IMO TOTALS
+        // Imo TOTALS
 
         document.getElementById(
             "imoTotalNob"

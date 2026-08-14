@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "monthlyBirdsReport"
+        );    
+
     const tableBody =
         document.getElementById("monthlyTableBody");
 
@@ -132,10 +137,14 @@ document.addEventListener("DOMContentLoaded", () => {
         new Date();
 
 
+    if (!monthFilter.value) {
+
     monthFilter.value =
         `${today.getFullYear()}-${String(
             today.getMonth() + 1
         ).padStart(2, "0")}`;
+
+    }
 
 
     // =========================================================
@@ -179,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             top: "18%",
 
-            bottom: "10%",
+            bottom: "16%",
 
             containLabel: true
         },
@@ -423,7 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.error(
-                "Monthly Birds Report Error:",
+                " Error:",
                 error
             );
 
@@ -540,6 +549,32 @@ document.addEventListener("DOMContentLoaded", () => {
             filteredData
         );
 
+
+        updateVehicleSummary(
+            filteredData
+        );
+
+    }
+    function updateWholeReport(
+    filteredData
+    ) {
+
+        const groupedByDate =
+            groupDataByDate(
+                filteredData
+            );
+
+        updateMonthlyKpis(
+            filteredData
+        );
+
+        renderReport(
+            groupedByDate
+        );
+
+        updateTripChart(
+            filteredData
+        );
 
         updateVehicleSummary(
             filteredData
@@ -1604,5 +1639,85 @@ function updateTripChart(data) {
 
         }
     );
+    function updateMonthlyKpis(data) {
+
+    let totalBirds = 0;
+    let totalWeight = 0;
+    let totalDoa = 0;
+
+
+    data.forEach(row => {
+
+        totalBirds +=
+            safeNumber(
+                row.available_birds
+            );
+
+        totalWeight +=
+            safeNumber(
+                row.weight
+            );
+
+        totalDoa +=
+            safeNumber(
+                row.doa
+            );
+
+    });
+
+
+    // Monthly weighted actual average
+    const actualAvgWeight =
+        totalBirds > 0
+            ? totalWeight / totalBirds
+            : 0;
+
+
+    document.getElementById(
+        "kpiMonthlyBirdsReceived"
+    ).textContent =
+        Math.round(totalBirds)
+            .toLocaleString("en-US");
+
+
+    document.getElementById(
+        "kpiMonthlyLiveWeight"
+    ).textContent =
+        totalWeight >= 1000
+            ? `${(totalWeight / 1000).toLocaleString(
+                "en-US",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )} t`
+            : `${totalWeight.toLocaleString(
+                "en-US",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )} kg`;
+
+
+    document.getElementById(
+        "kpiMonthlyDoa"
+    ).textContent =
+        Math.round(totalDoa)
+            .toLocaleString("en-US");
+
+
+    document.getElementById(
+        "kpiMonthlyAvgWeight"
+    ).textContent =
+        `${actualAvgWeight.toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits: 3,
+                maximumFractionDigits: 3
+            }
+        )} kg`;
+
+}
 
 });

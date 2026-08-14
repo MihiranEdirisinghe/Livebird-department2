@@ -11,7 +11,7 @@
     >
 
     <title>
-        Monthly Birds Received Report
+        Monthly Plant Received & DOA Report
     </title>
 
 
@@ -40,7 +40,7 @@
 
             <img
                 src="../assets/Logo.png"
-                alt="IMO Chicken Logo"
+                alt="Imo Chicken Logo"
             >
 
             <h2>
@@ -65,7 +65,7 @@
                 href="admin-analytics.html"
                 class="sidebar-link"
             >
-                Management Analytics
+                Live Bird Catching Report
             </a>
 
 
@@ -73,7 +73,7 @@
                 href="imo-plant-report.html"
                 class="sidebar-link"
             >
-                IMO Plant Report
+                Processing P.Received Report
             </a>
 
 
@@ -81,7 +81,7 @@
                 href="other-plants-report.html"
                 class="sidebar-link"
             >
-                Other Plants Report
+                Live Bird Sales Report
             </a>
 
 
@@ -89,7 +89,7 @@
                 href="own-farm-report.html"
                 class="sidebar-link"
             >
-                Own Farm Specific Report
+                Own Farm Movement Report
             </a>
 
 
@@ -97,29 +97,30 @@
                 href="birds-received-report.html"
                 class="sidebar-link"
             >
-                Birds Received Report
+                Plant Received & DOA Report
             </a>
 
 
-            <a
-                href="birds-received-monthly-report.html"
-                class="sidebar-link active"
-            >
-                Monthly Birds Report
-            </a>
+            
 
             <a
                 href="bird-condition-analytics.html"
                 class="sidebar-link"
             >
-                Bird Condition Analytics
+                Bird Condition Report
             </a>
 
             <a
                 href="vehicle-expenses-monthly-report.html"
                 class="sidebar-link"
             >
-                Vehicle Expense Analytics
+                Catching Team Expens Report
+            </a>
+
+            <a 
+                href="forecast-actual-report.html" 
+                class="sidebar-link">
+                Forecast vs Actual Report
             </a>
 
 
@@ -153,7 +154,7 @@
                     <div>
 
                         <h1>
-                            Monthly Birds Received Summary
+                            Monthly Bird Received & Transport Mortality Dashboard
                         </h1>
 
                         <p class="analytics-subtitle">
@@ -190,6 +191,24 @@
 
 
             </header>
+
+            <div class="analytics-view-switch">
+
+                <a
+                    href="birds-received-report.html"
+                    class="view-switch-btn"
+                >
+                    Daily Report
+                </a>
+
+                <a
+                    href="birds-received-monthly-report.html"
+                    class="view-switch-btn active"
+                >
+                    Monthly Report
+                </a>
+
+            </div>
 
 
 
@@ -272,6 +291,111 @@
 
 
             </section>
+
+            <section class="analytics-kpi-grid">
+
+            <!-- TOTAL BIRDS RECEIVED -->
+            <article class="analytics-kpi-card analytics-fade-in">
+                <div class="analytics-kpi-top">
+
+                    <div>
+                        <div class="analytics-kpi-label">
+                            Total Birds Received
+                        </div>
+
+                        <div
+                            id="kpiMonthlyBirdsReceived"
+                            class="analytics-kpi-value"
+                        >
+                            0
+                        </div>
+                    </div>
+
+                    <div class="analytics-kpi-icon analytics-icon-pulse">
+                        N
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- TOTAL LIVE WEIGHT -->
+            <article class="analytics-kpi-card analytics-fade-in">
+                <div class="analytics-kpi-top">
+
+                    <div>
+                        <div class="analytics-kpi-label">
+                            Total Live Weight
+                        </div>
+
+                        <div
+                            id="kpiMonthlyLiveWeight"
+                            class="analytics-kpi-value"
+                        >
+                            0.00 kg
+                        </div>
+                    </div>
+
+                    <div class="analytics-kpi-icon analytics-icon-pulse">
+                        W
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- DOA -->
+            <article class="analytics-kpi-card analytics-fade-in">
+                <div class="analytics-kpi-top">
+
+                    <div>
+                        <div class="analytics-kpi-label">
+                            Dead on Arrival (DOA)
+                        </div>
+
+                        <div
+                            id="kpiMonthlyDoa"
+                            class="analytics-kpi-value"
+                        >
+                            0
+                        </div>
+                    </div>
+
+                    <div class="analytics-kpi-icon analytics-icon-pulse">
+                        !
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- ACTUAL AVG WEIGHT -->
+            <article class="analytics-kpi-card analytics-fade-in">
+                <div class="analytics-kpi-top">
+
+                    <div>
+                        <div class="analytics-kpi-label">
+                            Actual Avg Weight
+                        </div>
+
+                        <div
+                            id="kpiMonthlyAvgWeight"
+                            class="analytics-kpi-value"
+                        >
+                            0.000 kg
+                        </div>
+                    </div>
+
+                    <div class="analytics-kpi-icon analytics-icon-pulse">
+                        A
+                    </div>
+
+                </div>
+            </article>
+
+        </section>
+
+        </section>
 
 
 
@@ -418,7 +542,7 @@
                     <div>
 
                         <h2>
-                            Monthly Birds Received Report
+                            Monthly Plant Received & DOA Summary Report
                         </h2>
 
                         <p class="analytics-subtitle">

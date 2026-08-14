@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "vehicleExpenseAnalytics"
+        );    
+
     const loader =
         document.getElementById("analyticsLoader");
 
@@ -108,16 +113,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // =========================================================
     // DEFAULT MONTH
+    // Keep saved month if filter memory restored one
     // =========================================================
 
-    const today =
-        new Date();
+    if (!monthFilter.value) {
 
+        const today =
+            new Date();
 
-    monthFilter.value =
-        `${today.getFullYear()}-${String(
-            today.getMonth() + 1
-        ).padStart(2, "0")}`;
+        monthFilter.value =
+            `${today.getFullYear()}-${String(
+                today.getMonth() + 1
+            ).padStart(2, "0")}`;
+
+    }
 
 
     // =========================================================
@@ -310,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.error(
-                "Vehicle Expense Analytics Error:",
+                "Catching Team Expens Report Error:",
                 error
             );
 

@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "otherPlantsReport"
+        );   
+
     const loader =
         document.getElementById("analyticsLoader");
 
@@ -1536,7 +1541,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             // Exact Python behavior:
-            // exclude IMO Plant customers.
+            // exclude Imo Plant customers.
 
             otherPlantsData =
                 allReportData.filter(row => {

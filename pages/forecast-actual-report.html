@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Forecast & Actual Birds Report</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-analytics.css">
+    <link rel="stylesheet" href="../css/report.css">
+
+</head>
+
+
+<body class="dashboard-page admin-analytics-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="../assets/Logo.png"
+                alt="Imo Chicken Logo"
+            >
+
+            <h2>
+                Live Bird Department
+            </h2>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <p class="sidebar-section-title">
+            ADMIN ANALYTICS
+        </p>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="admin-analytics.html"
+                class="sidebar-link"
+            >
+                Live Bird Catching Report
+            </a>
+
+            <a
+                href="imo-plant-report.html"
+                class="sidebar-link"
+            >
+                Processing P.Received Report
+            </a>
+
+            <a
+                href="other-plants-report.html"
+                class="sidebar-link"
+            >
+                Live Bird Sales Report
+            </a>
+
+            <a
+                href="own-farm-report.html"
+                class="sidebar-link"
+            >
+                Own Farm Movement Report
+            </a>
+
+            <a
+                href="birds-received-report.html"
+                class="sidebar-link"
+            >
+                Plant Received & DOA Report
+            </a>
+
+            <a
+                href="bird-condition-analytics.html"
+                class="sidebar-link"
+            >
+                Bird Condition Report
+            </a>
+
+            <a
+                href="vehicle-expenses-monthly-report.html"
+                class="sidebar-link"
+            >
+                Catching Team Expens Report
+            </a>
+
+            <a
+                href="forecast-actual-report.html"
+                class="sidebar-link active"
+            >
+                Forecast vs Actual Report
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="dashboard-main">
+
+        <div class="admin-main">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <header class="admin-header analytics-fade-in">
+
+                <div class="admin-header-left">
+
+                    <div>
+
+                        <h1>
+                            Monthly Forecast vs Actual Birds Report
+                        </h1>
+
+                        <p class="analytics-subtitle">
+                            Monthly catching forecast compared with actual bird performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-header-user">
+
+                    <span
+                        id="loggedUser"
+                        class="admin-user-badge"
+                    >
+                        Logged in as:
+                    </span>
+
+                    <button
+                        id="logoutBtn"
+                        class="logout-btn"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+            </header>
+
+
+                 <div class="analytics-view-switch">
+
+                    <a
+                        href="forecast-actual-report.html"
+                        class="view-switch-btn active"
+                    >
+                        Forecast Detail
+                    </a>
+
+                    <a
+                        href="forecast-actual-monthly.html"
+                        class="view-switch-btn"
+                    >
+                        Monthly Comparison
+                    </a>
+
+                </div>
+
+
+
+            <!-- =================================================
+                 MONTH FILTER
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-filter-card">
+
+                    <div>
+
+                        <div class="analytics-filter-title">
+                            Monthly Summary Period
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Select the month for Forecast and Actual bird totals
+                        </p>
+
+                    </div>
+
+
+                    <div class="analytics-filter-controls">
+
+                        <input
+                            type="month"
+                            id="monthFilter"
+                        >
+
+                        <button
+                            id="monthFilterBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Filter
+                        </button>
+
+                        <button
+                            id="monthClearBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Clear
+                        </button>
+
+                        <button
+                            id="refreshBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Refresh
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="analyticsLoader"
+                    class="analytics-loader"
+                >
+                    Loading Forecast vs Actual report...
+                </div>
+
+
+                <div
+                    id="analyticsMessage"
+                    class="analytics-message"
+                ></div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FORECAST SUMMARY
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-section-heading">
+
+                    <div>
+
+                        <h2>
+                            Forecast Birds
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Catching plan totals for the selected month
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forecast-summary-wrapper">
+
+                    <table class="forecast-summary-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>FORECAST BIRDS</th>
+                                <th>BIRDS</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+                                <td>Kotadeniyawa Farm Birds</td>
+                                <td id="forecastKotadeniyawa">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Pannala Farm Birds</td>
+                                <td id="forecastPannala">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Weerapokuna Farm Birds</td>
+                                <td id="forecastWeerapokuna">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Epaladeniya Farm Birds</td>
+                                <td id="forecastEpaladeniya">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Buy Back Farm Birds</td>
+                                <td id="forecastBuyback">0</td>
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+                                <td>Total Birds</td>
+                                <td id="forecastTotal">0</td>
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACTUAL SUMMARY
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-section-heading">
+
+                    <div>
+
+                        <h2>
+                            Actual Birds
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Actual bird totals recorded during the selected month
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forecast-summary-wrapper">
+
+                    <table class="forecast-summary-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>ACTUAL BIRDS</th>
+                                <th>BIRDS</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+                                <td>Kotadeniyawa Farm Birds</td>
+                                <td id="actualKotadeniyawa">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Pannala Farm Birds</td>
+                                <td id="actualPannala">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Weerapokuna Farm Birds</td>
+                                <td id="actualWeerapokuna">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Epaladeniya Farm Birds</td>
+                                <td id="actualEpaladeniya">0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Buy Back Farm Birds</td>
+                                <td id="actualBuyback">0</td>
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+                                <td>Total Birds</td>
+                                <td id="actualTotal">0</td>
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FORECAST DETAIL FILTER
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-filter-card">
+
+                    <div>
+
+                        <div class="analytics-filter-title">
+                            Forecast Detail
+                        </div>
+
+                        <p class="analytics-subtitle">
+                            Filter the detailed catching forecast by date range
+                        </p>
+
+                    </div>
+
+
+                    <div class="analytics-filter-controls">
+
+                        <input
+                            type="date"
+                            id="fromDate"
+                            title="From Date"
+                        >
+
+                        <input
+                            type="date"
+                            id="toDate"
+                            title="To Date"
+                        >
+
+                        <button
+                            id="detailFilterBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Filter
+                        </button>
+
+                        <button
+                            id="detailClearBtn"
+                            class="analytics-pill-btn"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FULL FORECAST DETAIL TABLE
+            ================================================== -->
+
+            <section class="analytics-card analytics-fade-in">
+
+                <div class="analytics-section-heading">
+
+                    <div>
+
+                        <h2>
+                            Detailed Forecast Catching Plan
+                        </h2>
+
+                        <p class="analytics-subtitle">
+                            Full daily forecast with farm, cage, quantity and size details
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="buyback-table-wrapper">
+
+                    <table
+                        id="forecastDetailTable"
+                        class="buyback-report-table"
+                    >
+
+
+                        <!-- ================================
+                             HEADER
+                        ================================= -->
+
+                        <thead>
+
+                            <tr class="main-header-row">
+
+                                <th rowspan="2">
+                                    DATE
+                                </th>
+
+                                <th rowspan="2">
+                                    BUY BACK
+                                </th>
+
+                                <th colspan="3">
+                                    PANNALA
+                                </th>
+
+                                <th colspan="3">
+                                    KOTADENIYAWA
+                                </th>
+
+                                <th colspan="3">
+                                    WEERAPOKUNA
+                                </th>
+
+                                <th colspan="3">
+                                    EPALADENIYA
+                                </th>
+
+                                <th rowspan="2">
+                                    TOTAL
+                                </th>
+
+                                <th rowspan="2">
+                                    Imo PLANT
+                                </th>
+
+                                <th rowspan="2">
+                                    LIVE SALE
+                                </th>
+
+                                <th rowspan="2">
+                                    REMARK
+                                </th>
+
+                            </tr>
+
+
+                            <tr class="sub-header-row">
+
+                                <!-- PANNALA -->
+                                <th>CAGE</th>
+                                <th>QTY</th>
+                                <th>SIZE</th>
+
+                                <!-- KOTADENIYAWA -->
+                                <th>CAGE</th>
+                                <th>QTY</th>
+                                <th>SIZE</th>
+
+                                <!-- WEERAPOKUNA -->
+                                <th>CAGE</th>
+                                <th>QTY</th>
+                                <th>SIZE</th>
+
+                                <!-- EPALADENIYA -->
+                                <th>CAGE</th>
+                                <th>QTY</th>
+                                <th>SIZE</th>
+
+                            </tr>
+
+                        </thead>
+
+
+
+                        <!-- ================================
+                             BODY
+                        ================================= -->
+
+                        <tbody id="forecastDetailBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="18"
+                                    class="analytics-empty-state"
+                                >
+                                    Loading forecast records...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+
+                        <!-- ================================
+                             GRAND TOTAL
+                        ================================= -->
+
+                        <tfoot>
+
+                            <tr class="grand-total-row">
+
+                                <td>
+                                    GRAND TOTAL
+                                </td>
+
+
+                                <!-- BUY BACK -->
+
+                                <td id="detailBuybackTotal">
+                                    0
+                                </td>
+
+
+                                <!-- PANNALA -->
+
+                                <td>
+                                    TOTAL
+                                </td>
+
+                                <td id="detailPannalaTotal">
+                                    0
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+
+                                <!-- KOTADENIYAWA -->
+
+                                <td>
+                                    TOTAL
+                                </td>
+
+                                <td id="detailKotadeniyawaTotal">
+                                    0
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+
+                                <!-- WEERAPOKUNA -->
+
+                                <td>
+                                    TOTAL
+                                </td>
+
+                                <td id="detailWeerapokunaTotal">
+                                    0
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+
+                                <!-- EPALADENIYA -->
+
+                                <td>
+                                    TOTAL
+                                </td>
+
+                                <td id="detailEpaladeniyaTotal">
+                                    0
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+
+                                <!-- TOTAL -->
+
+                                <td id="detailTotalBirds">
+                                    0
+                                </td>
+
+
+                                <!-- Imo PLANT -->
+
+                                <td id="detailImoTotal">
+                                    0
+                                </td>
+
+
+                                <!-- LIVE SALE -->
+
+                                <td id="detailLiveSaleTotal">
+                                    0
+                                </td>
+
+
+                                <!-- REMARK -->
+
+                                <td>
+                                    —
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin-common.js"></script>
+    <script src="../js/forecast-actual-report.js"></script>
+
+</body>
+
+</html>

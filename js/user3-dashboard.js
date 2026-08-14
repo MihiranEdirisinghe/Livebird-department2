@@ -653,7 +653,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </p>
 
             <p>
-                <strong>IMO Plant:</strong>
+                <strong>Imo Plant:</strong>
                 ${escapeHtml(imoPlantInput.value || "0")}
             </p>
 

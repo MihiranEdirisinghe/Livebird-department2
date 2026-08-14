@@ -10,15 +10,12 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Bird Condition & Rejection Analytics</title>
-
+    <title>Monthly Forecast vs Actual Comparison</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/admin-analytics.css">
 
-
-    <!-- ECHARTS -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 
 </head>
@@ -32,7 +29,6 @@
     ====================================================== -->
 
     <aside class="sidebar">
-
 
         <div class="sidebar-brand">
 
@@ -58,14 +54,12 @@
 
         <nav class="sidebar-nav">
 
-
             <a
                 href="admin-analytics.html"
                 class="sidebar-link"
             >
                 Live Bird Catching Report
             </a>
-
 
             <a
                 href="imo-plant-report.html"
@@ -74,14 +68,12 @@
                 Processing P.Received Report
             </a>
 
-
             <a
                 href="other-plants-report.html"
                 class="sidebar-link"
             >
                 Live Bird Sales Report
             </a>
-
 
             <a
                 href="own-farm-report.html"
@@ -90,7 +82,6 @@
                 Own Farm Movement Report
             </a>
 
-
             <a
                 href="birds-received-report.html"
                 class="sidebar-link"
@@ -98,13 +89,9 @@
                 Plant Received & DOA Report
             </a>
 
-
-            
-
-
             <a
                 href="bird-condition-analytics.html"
-                class="sidebar-link active"
+                class="sidebar-link"
             >
                 Bird Condition Report
             </a>
@@ -116,15 +103,14 @@
                 Catching Team Expens Report
             </a>
 
-            <a 
-                href="forecast-actual-report.html" 
-                class="sidebar-link">
+            <a
+                href="forecast-actual-report.html"
+                class="sidebar-link active"
+            >
                 Forecast vs Actual Report
             </a>
 
-
         </nav>
-
 
     </aside>
 
@@ -136,7 +122,6 @@
 
     <main class="dashboard-main">
 
-
         <div class="admin-main">
 
 
@@ -146,17 +131,16 @@
 
             <header class="admin-header analytics-fade-in">
 
-
                 <div class="admin-header-left">
 
                     <div>
 
                         <h1>
-                            Daily Bird Condition & Rejection Analytics Dashboard
+                            Monthly Forecast vs Actual Birds Comparison Dashboard
                         </h1>
 
                         <p class="analytics-subtitle">
-                            Rejection weight analysis by reason and detailed bird condition records
+                            Monthly comparison of forecasted and actual bird volumes
                         </p>
 
                     </div>
@@ -164,9 +148,7 @@
                 </div>
 
 
-
                 <div class="admin-header-user">
-
 
                     <span
                         id="loggedUser"
@@ -175,7 +157,6 @@
                         Logged in as:
                     </span>
 
-
                     <button
                         id="logoutBtn"
                         class="logout-btn"
@@ -183,54 +164,63 @@
                         Logout
                     </button>
 
-
                 </div>
-
 
             </header>
 
 
 
             <!-- =================================================
-                 DATE FILTER
+                 VIEW SWITCH
+            ================================================== -->
+
+            <div class="analytics-view-switch">
+
+                <a
+                    href="forecast-actual-report.html"
+                    class="view-switch-btn"
+                >
+                    Forecast Detail
+                </a>
+
+                <a
+                    href="forecast-actual-monthly.html"
+                    class="view-switch-btn active"
+                >
+                    Monthly Comparison
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MONTH FILTER
             ================================================== -->
 
             <section class="analytics-card analytics-fade-in">
 
-
                 <div class="analytics-filter-card">
-
 
                     <div>
 
                         <div class="analytics-filter-title">
-                            Report Period
+                            Comparison Period
                         </div>
 
                         <p class="analytics-subtitle">
-                            Select a date range to analyze bird condition and rejection records
+                            Select the month to compare forecast and actual birds
                         </p>
 
                     </div>
 
 
-
                     <div class="analytics-filter-controls">
 
-
                         <input
-                            type="date"
-                            id="fromDate"
-                            title="From Date"
+                            type="month"
+                            id="monthFilter"
                         >
-
-
-                        <input
-                            type="date"
-                            id="toDate"
-                            title="To Date"
-                        >
-
 
                         <button
                             id="filterBtn"
@@ -239,14 +229,12 @@
                             Filter
                         </button>
 
-
                         <button
                             id="clearBtn"
                             class="analytics-pill-btn"
                         >
                             Clear
                         </button>
-
 
                         <button
                             id="refreshBtn"
@@ -255,19 +243,16 @@
                             Refresh
                         </button>
 
-
                     </div>
 
-
                 </div>
-
 
 
                 <div
                     id="analyticsLoader"
                     class="analytics-loader"
                 >
-                    Loading bird condition analytics...
+                    Loading monthly comparison...
                 </div>
 
 
@@ -276,240 +261,142 @@
                     class="analytics-message"
                 ></div>
 
-
             </section>
 
 
 
             <!-- =================================================
-                 REJECTION REASON CHART
+                 COMPARISON CHART
             ================================================== -->
 
             <section class="analytics-chart-card analytics-fade-in">
 
-
                 <div class="analytics-chart-header">
-
 
                     <div>
 
                         <div class="analytics-chart-title">
-                            Rejection Weight by Reason
+                            Forecast vs Actual Birds by Source
                         </div>
 
                         <p class="analytics-subtitle">
-                            Total rejection weight grouped by rejection reason
+                            Monthly bird volume comparison across own farms and buy back
                         </p>
 
                     </div>
 
-
-                    <span
-                        id="chartTotalBadge"
-                        class="analytics-chart-badge"
-                    >
-                        Total Rejection: 0.00 kg
-                    </span>
-
-
                 </div>
 
 
-
                 <div
-                    id="reasonChart"
+                    id="comparisonChart"
                     class="analytics-chart tall"
                 ></div>
-
 
             </section>
 
 
 
             <!-- =================================================
-                 DETAILED TABLE
+                 COMPARISON TABLE
             ================================================== -->
 
             <section class="analytics-card analytics-fade-in">
 
-
-                <!-- TABLE HEADER / REASON FILTER -->
-
                 <div class="analytics-section-heading">
-
 
                     <div>
 
                         <h2>
-                            Bird Condition Details
+                            Monthly Comparison Summary
                         </h2>
 
                         <p class="analytics-subtitle">
-                            Filter detailed records by rejection reason
+                            Forecast, actual and variance by bird source
                         </p>
 
                     </div>
 
-
-
-                    <div class="analytics-filter-controls">
-
-
-                        <label for="reasonFilter">
-                            Reason
-                        </label>
-
-
-                        <select id="reasonFilter">
-
-                            <option value="">
-                                All Reasons
-                            </option>
-
-                        </select>
-
-
-                    </div>
-
-
                 </div>
 
 
-
-                <!-- TABLE -->
-
                 <div class="analytics-table-wrapper">
 
-
-                    <table class="analytics-table">
-
+                    <table class="analytics-table forecast-comparison-table">
 
                         <thead>
-
 
                             <tr>
 
                                 <th>
-                                    DATE
+                                    SOURCE
                                 </th>
 
                                 <th>
-                                    FARMER NAME
+                                    FORECAST BIRDS
                                 </th>
 
                                 <th>
-                                    NOB
+                                    ACTUAL BIRDS
                                 </th>
 
                                 <th>
-                                    WEIGHT (KG)
-                                </th>
-
-                                <th>
-                                    AVERAGE WEIGHT
-                                </th>
-
-                                <th>
-                                    REJECTION WEIGHT
-                                </th>
-
-                                <th>
-                                    REASON
-                                </th>
-
-                                <th>
-                                    FINAL WEIGHT
+                                    VARIANCE
                                 </th>
 
                             </tr>
-
 
                         </thead>
 
 
-
-                        <tbody id="conditionTableBody">
-
+                        <tbody id="comparisonTableBody">
 
                             <tr>
 
                                 <td
-                                    colspan="8"
+                                    colspan="4"
                                     class="analytics-empty-state"
                                 >
-                                    Loading bird condition records...
+                                    Loading monthly comparison...
                                 </td>
 
                             </tr>
-
 
                         </tbody>
 
 
-
                         <tfoot>
-
 
                             <tr>
 
-
                                 <td>
-                                    TOTAL
+                                    TOTAL BIRDS
                                 </td>
 
-
-                                <td>
-                                    —
-                                </td>
-
-
-                                <td id="totalNob">
+                                <td id="totalForecast">
                                     0
                                 </td>
 
-
-                                <td id="totalWeight">
-                                    0.00
+                                <td id="totalActual">
+                                    0
                                 </td>
 
-
-                                <td id="totalAverage">
-                                    0.00
+                                <td id="totalVariance">
+                                    0
                                 </td>
-
-
-                                <td id="totalRejection">
-                                    0.00
-                                </td>
-
-
-                                <td>
-                                    —
-                                </td>
-
-
-                                <td id="totalFinalWeight">
-                                    0.00
-                                </td>
-
 
                             </tr>
 
-
                         </tfoot>
-
 
                     </table>
 
-
                 </div>
-
 
             </section>
 
 
         </div>
-
 
     </main>
 
@@ -520,11 +407,8 @@
     ====================================================== -->
 
     <script src="../js/api.js"></script>
-
     <script src="../js/admin-common.js"></script>
-
-    <script src="../js/bird-condition-analytics.js"></script>
-
+    <script src="../js/forecast-actual-monthly.js"></script>
 
 </body>
 

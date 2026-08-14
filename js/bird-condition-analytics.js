@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshBtn =
         document.getElementById("refreshBtn");
 
+    const filterMemory =
+        AdminCommon.enableFilterMemory(
+            "birdConditionAnalytics"
+        );    
+
 
     const tableBody =
         document.getElementById("conditionTableBody");
@@ -355,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.error(
-                "Bird Condition Analytics Error:",
+                "Bird Condition Report Error:",
                 error
             );
 
