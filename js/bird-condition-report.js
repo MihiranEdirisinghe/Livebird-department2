@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const filterMemory =
         AdminCommon.enableFilterMemory(
-            "birdsReceivedDaily"
+            "birdConditionReport"
         );    
 
     const reportTableBody =
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             row.innerHTML = `
-                <td colspan="7">
+                <td colspan="8">
                     No bird condition records found.
                 </td>
             `;

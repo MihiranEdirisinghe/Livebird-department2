@@ -1,54 +1,557 @@
-/* ===============================
-   SETTINGS LAYOUT
-================================ */
+/* =========================================================
+   SETTINGS PAGE
+========================================================= */
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.settings-intro {
+    margin-bottom: 24px;
+}
+
+.settings-intro h2 {
+    margin: 0 0 6px;
+
+    font-size: 26px;
+    font-weight: 800;
+
+    color: #0f172a;
+}
+
+.settings-intro p {
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   SETTINGS GRID
+========================================================= */
 
 .settings-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+
+    align-items: stretch;
 }
 
 
-/* ===============================
+/* =========================================================
    SETTINGS CARD
-================================ */
+========================================================= */
 
 .settings-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 390px;
+
+    padding: 30px;
+
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 26px;
-    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.05);
 }
 
-.settings-card h2 {
-    margin: 0 0 22px;
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.settings-card-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 22px;
+
+    border-radius: 15px;
+
+    background: #f0f3fa;
+
+    color: #010853;
+
     font-size: 20px;
-    color: #1e293b;
+    font-weight: 800;
 }
 
 
-/* ===============================
-   FORM SPACING
-================================ */
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.settings-card-heading {
+    margin-bottom: 26px;
+}
+
+.settings-card-heading h2 {
+    margin: 0 0 6px;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    color: #0f172a;
+}
+
+.settings-card-heading p {
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.settings-card-body {
+    flex: 1;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
 
 .settings-card .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-.settings-card .save-btn {
-    margin-top: 6px;
+.settings-card .form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    color: #64748b;
 }
 
 
-/* ===============================
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.settings-card input,
+.settings-card select {
+    width: 100%;
+
+    min-height: 54px;
+
+    padding: 0 16px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 16px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.settings-card input:focus,
+.settings-card select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+.settings-card input::placeholder {
+    color: #64748b;
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.settings-save-btn {
+    width: 100%;
+
+    min-height: 46px;
+
+    margin-top: 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #010853;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.settings-save-btn:hover {
+    background: #071685;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 18px rgba(1, 8, 83, 0.18);
+}
+
+
+.settings-save-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.settings-card .save-message {
+    min-height: 20px;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
    RESPONSIVE
-================================ */
+========================================================= */
 
 @media (max-width: 900px) {
 
     .settings-grid {
         grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .settings-card {
+        min-height: auto;
+
+        padding: 22px;
+    }
+
+    .settings-intro h2 {
+        font-size: 22px;
+    }
+
+}
+/* =========================================================
+   USER 1 SETTINGS - FINAL OVERRIDES
+========================================================= */
+
+.dashboard-page .dashboard-main {
+    padding: 36px 40px !important;
+    background: #f5f7fb !important;
+}
+
+
+/* HEADER */
+
+.dashboard-page .dashboard-header {
+    background: #ffffff !important;
+    border: 1px solid #dbe3ef !important;
+    border-radius: 20px !important;
+
+    padding: 22px 26px !important;
+    margin-bottom: 30px !important;
+
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05) !important;
+}
+
+.dashboard-page .dashboard-header h1 {
+    margin: 0 !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+}
+
+
+/* INTRO */
+
+.dashboard-page .settings-intro {
+    margin: 0 0 22px 0 !important;
+}
+
+.dashboard-page .settings-intro h2 {
+    margin: 0 0 6px 0 !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+}
+
+.dashboard-page .settings-intro p {
+    margin: 0 !important;
+    color: #64748b !important;
+    font-size: 15px !important;
+}
+
+
+/* GRID */
+
+.dashboard-page .settings-grid {
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 28px !important;
+
+    align-items: stretch !important;
+}
+
+
+/* CARD */
+
+.dashboard-page .settings-grid .settings-card {
+    display: flex !important;
+    flex-direction: column !important;
+
+    min-width: 0 !important;
+    min-height: 410px !important;
+
+    padding: 30px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dbe3ef !important;
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+
+/* ICON */
+
+.dashboard-page .settings-card .settings-card-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 54px !important;
+    height: 54px !important;
+
+    flex: 0 0 54px !important;
+
+    margin: 0 0 22px 0 !important;
+
+    border-radius: 15px !important;
+
+    background: #eef2f7 !important;
+    color: #010853 !important;
+
+    font-size: 20px !important;
+    font-weight: 800 !important;
+}
+
+
+/* HEADING */
+
+.dashboard-page .settings-card .settings-card-heading {
+    margin-bottom: 24px !important;
+}
+
+.dashboard-page .settings-card .settings-card-heading h2 {
+    margin: 0 0 6px 0 !important;
+
+    font-size: 21px !important;
+    font-weight: 800 !important;
+
+    color: #0f172a !important;
+}
+
+.dashboard-page .settings-card .settings-card-heading p {
+    margin: 0 !important;
+
+    color: #64748b !important;
+    font-size: 14px !important;
+}
+
+
+/* BODY */
+
+.dashboard-page .settings-card .settings-card-body {
+    display: flex !important;
+    flex-direction: column !important;
+
+    flex: 1 !important;
+}
+
+
+/* FORM GROUP */
+
+.dashboard-page .settings-card .form-group {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 0 20px 0 !important;
+}
+
+.dashboard-page .settings-card .form-group label {
+    display: block !important;
+
+    margin: 0 0 8px 0 !important;
+
+    color: #64748b !important;
+
+    font-size: 13px !important;
+    font-weight: 800 !important;
+
+    text-transform: uppercase !important;
+}
+
+
+/* INPUT + SELECT */
+
+.dashboard-page .settings-card input,
+.dashboard-page .settings-card select {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    height: 54px !important;
+
+    margin: 0 !important;
+    padding: 0 16px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+
+    background: #ffffff !important;
+
+    color: #0f172a !important;
+
+    font-size: 16px !important;
+
+    outline: none !important;
+}
+
+
+.dashboard-page .settings-card input:focus,
+.dashboard-page .settings-card select:focus {
+    border-color: #2563eb !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10) !important;
+}
+
+
+/* MESSAGE */
+
+.dashboard-page .settings-card .save-message {
+    min-height: 20px !important;
+
+    margin: 4px 0 0 0 !important;
+
+    font-size: 13px !important;
+}
+
+
+/* BUTTON */
+
+.dashboard-page .settings-card .settings-save-btn {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    min-height: 46px !important;
+
+    margin-top: 18px !important;
+    padding: 11px 18px !important;
+
+    border: none !important;
+    border-radius: 12px !important;
+
+    background: #010853 !important;
+    color: #ffffff !important;
+
+    font-size: 15px !important;
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+}
+
+
+.dashboard-page .settings-card .settings-save-btn:hover {
+    background: #071685 !important;
+
+    box-shadow:
+        0 8px 18px rgba(1, 8, 83, 0.18) !important;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .dashboard-page .settings-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-page .dashboard-main {
+        padding: 20px !important;
+    }
+
+    .dashboard-page .settings-grid .settings-card {
+        min-height: auto !important;
+        padding: 22px !important;
     }
 
 }

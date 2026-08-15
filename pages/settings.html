@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/setting.css">
 </head>
 
 <body class="dashboard-page">
@@ -69,32 +69,71 @@
 
     <main class="dashboard-main">
 
-        <header class="dashboard-header">
+    <!-- HEADER -->
+    <header class="dashboard-header">
 
-            <h1>System Settings & Master Data Management</h1>
+        <div>
+            <h1>Settings</h1>
+        </div>
 
-            <div class="header-user">
+        <div class="header-user">
 
-                <span id="loggedUser">
-                    Logged in as:
-                </span>
+            <span id="loggedUser">
+                Logged in as:
+            </span>
 
-                <button id="logoutBtn" class="logout-btn">
-                    Logout
-                </button>
+            <button
+                id="logoutBtn"
+                class="logout-btn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE INTRO -->
+    <section class="settings-intro">
+
+        <h2>Master Data Management</h2>
+
+        <p>
+            Add farmers and customers used in Daily Catching & Sales.
+        </p>
+
+    </section>
+
+
+    <!-- SETTINGS CARDS -->
+    <section class="settings-grid">
+
+
+        <!-- =========================
+             ADD FARMER
+        ========================== -->
+
+        <article class="settings-card">
+
+            <div class="settings-card-icon">
+                F
+            </div>
+
+            <div class="settings-card-heading">
+
+                <h2>
+                    Add Farmer
+                </h2>
+
+                <p>
+                    Add a new farmer to the Farmers list.
+                </p>
 
             </div>
 
-        </header>
 
-
-        <section class="settings-grid">
-
-            <!-- ADD FARMER -->
-
-            <div class="settings-card">
-
-                <h2>Add New Farmer</h2>
+            <div class="settings-card-body">
 
                 <div class="form-group">
 
@@ -126,7 +165,7 @@
                     <input
                         type="text"
                         id="farmerName"
-                        placeholder="Enter Farmer Name"
+                        placeholder="Enter farmer name"
                     >
 
                 </div>
@@ -137,23 +176,44 @@
                     class="save-message"
                 ></div>
 
+            </div>
 
-                <button
-                    id="saveFarmerBtn"
-                    class="save-btn"
-                >
-                    Save Farmer
-                </button>
+
+            <button
+                id="saveFarmerBtn"
+                class="save-btn settings-save-btn"
+            >
+                Save Farmer
+            </button>
+
+        </article>
+
+
+
+        <!-- =========================
+             ADD CUSTOMER
+        ========================== -->
+
+        <article class="settings-card">
+
+            <div class="settings-card-icon">
+                C
+            </div>
+
+            <div class="settings-card-heading">
+
+                <h2>
+                    Add Customer
+                </h2>
+
+                <p>
+                    Add a new customer to the Customers list.
+                </p>
 
             </div>
 
 
-            <!-- ADD CUSTOMER -->
-
-            <div class="settings-card">
-
-                <h2>Add New Customer</h2>
-
+            <div class="settings-card-body">
 
                 <div class="form-group">
 
@@ -164,7 +224,7 @@
                     <input
                         type="text"
                         id="customerName"
-                        placeholder="Enter Customer Name"
+                        placeholder="Enter customer name"
                     >
 
                 </div>
@@ -175,19 +235,22 @@
                     class="save-message"
                 ></div>
 
-
-                <button
-                    id="saveCustomerBtn"
-                    class="save-btn"
-                >
-                    Save Customer
-                </button>
-
             </div>
 
-        </section>
 
-    </main>
+            <button
+                id="saveCustomerBtn"
+                class="save-btn settings-save-btn"
+            >
+                Save Customer
+            </button>
+
+        </article>
+
+
+    </section>
+
+</main>
 
 
     <script src="../js/api.js"></script>

@@ -54,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const useBuybackBtn =
         document.getElementById("useBuybackBtn");
 
+    const clearBuybackBtn =
+        document.getElementById("clearBuybackBtn");    
+
 
     const saveAllBtn =
         document.getElementById("saveAllBtn");
@@ -478,6 +481,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
+    clearBuybackBtn.addEventListener(
+        "click",
+        () => {
+
+            totalBuybackInput.value = "";
+            dayCountInput.value = "";
+            perDayValue.textContent = "0";
+
+            showMessage(
+                "Buyback calculator cleared.",
+                "success"
+            );
+
+        }
+    );
+
 
     // =========================================================
     // BUILD ALL ROWS
@@ -855,11 +874,7 @@ document.addEventListener("DOMContentLoaded", () => {
         liveSaleInput.value = "0";
 
 
-        totalBuybackInput.value = "";
-
-        dayCountInput.value = "";
-
-        perDayValue.textContent = "0";
+        
 
 
         LOCATIONS.forEach(location => {

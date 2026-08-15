@@ -442,3 +442,160 @@
     }
 
 }
+.clear-value-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 14px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    background: #e43a3a;
+    color: #ffffff;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.clear-value-btn:hover {
+    background: #c92f2f;
+}
+/* =========================================
+   PREVIEW HEADER
+========================================= */
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    background: #ffffff;
+}
+
+.preview-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    color: #0f172a;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.preview-close-btn {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #f1f5f9;
+    color: #475569;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.preview-close-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* =========================================
+   PREVIEW ACTIONS
+========================================= */
+
+.preview-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 16px 22px 20px;
+
+    border-top: 1px solid #e2e8f0;
+
+    background: #ffffff;
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+.preview-cancel-btn {
+    min-width: 110px;
+
+    padding: 11px 18px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.preview-cancel-btn:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   CONFIRM BUTTON
+========================================= */
+
+.preview-confirm-btn {
+    min-width: 160px;
+
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #010853;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    box-shadow:
+        0 4px 10px rgba(1, 8, 83, 0.14);
+}
+
+.preview-confirm-btn:hover {
+    background: #001a45;
+}
+
+.preview-confirm-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

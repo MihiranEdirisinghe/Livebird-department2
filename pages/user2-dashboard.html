@@ -292,7 +292,7 @@
             <!-- TRIP TIME -->
 
             <div class="section-label">
-                Trip Time Calculation (HH:MM & AM/PM)
+                Trip Time Calculation
             </div>
 
 
@@ -312,7 +312,9 @@
                         <input
                             type="text"
                             id="outTime"
-                            placeholder="04:28"
+                            placeholder="e.g. 1.2 or 13.5"
+                            inputmode="decimal"
+                            autocomplete="off"
                         >
 
                         <select id="outAmPm">
@@ -346,7 +348,9 @@
                         <input
                             type="text"
                             id="inTime"
-                            placeholder="08:23"
+                            placeholder="e.g. 1.2 or 13.5"
+                            inputmode="decimal"
+                            autocomplete="off"
                         >
 
                         <select id="inAmPm">
@@ -385,6 +389,10 @@
 
                 </div>
 
+            </div>
+
+            <div class="time-format-hint">
+                 
             </div>
 
         </section>

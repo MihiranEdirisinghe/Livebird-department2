@@ -222,120 +222,251 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // TRIP TIME CALCULATION
-    // =========================================================
+// TRIP TIME CALCULATION
+// =========================================================
 
-    outTime.addEventListener(
-        "input",
-        calculateTripTime
-    );
+outTime.addEventListener("input", calculateTripTime);
+inTime.addEventListener("input", calculateTripTime);
 
-    outAmPm.addEventListener(
-        "change",
-        calculateTripTime
-    );
-
-    inTime.addEventListener(
-        "input",
-        calculateTripTime
-    );
-
-    inAmPm.addEventListener(
-        "change",
-        calculateTripTime
-    );
+outAmPm.addEventListener("change", calculateTripTime);
+inAmPm.addEventListener("change", calculateTripTime);
 
 
-    function calculateTripTime() {
+// Auto format when leaving the field
+outTime.addEventListener("blur", () => {
+    formatTimeField(outTime);
+    calculateTripTime();
+});
 
-        const out =
-            parseTime(
-                outTime.value,
-                outAmPm.value
-            );
-
-        const incoming =
-            parseTime(
-                inTime.value,
-                inAmPm.value
-            );
-
-        if (!out || !incoming) {
-
-            totalTripTime.value =
-                "00:00:00";
-
-            return;
-        }
+inTime.addEventListener("blur", () => {
+    formatTimeField(inTime);
+    calculateTripTime();
+});
 
 
-        let diff =
-            incoming - out;
+// =========================================================
+// FORMAT TIME FIELD
+// =========================================================
 
-        if (diff < 0) {
-            diff += 24 * 60 * 60 * 1000;
-        }
+function formatTimeField(input) {
 
+    const normalized = normalizeTimeInput(input.value);
 
-        const totalSeconds =
-            Math.floor(diff / 1000);
-
-        const hours =
-            Math.floor(
-                totalSeconds / 3600
-            );
-
-        const minutes =
-            Math.floor(
-                (totalSeconds % 3600) / 60
-            );
-
-        const seconds =
-            totalSeconds % 60;
+    if (normalized) {
+        input.value = normalized;
+    }
+}
 
 
-        totalTripTime.value =
-            `${String(hours).padStart(2, "0")}:` +
-            `${String(minutes).padStart(2, "0")}:` +
-            `${String(seconds).padStart(2, "0")}`;
+// =========================================================
+// NORMALIZE TIME INPUT
+// =========================================================
 
+function normalizeTimeInput(value) {
+
+    const clean = String(value || "").trim();
+
+    if (!clean) {
+        return "";
     }
 
 
-    function parseTime(
-        value,
-        ampm
-    ) {
+    // -----------------------------------------------------
+    // NORMAL FORMAT
+    // 1:20  -> 01:20
+    // 01:20 -> 01:20
+    // 13:50 -> 13:50
+    // -----------------------------------------------------
 
-        const clean =
-            String(value || "").trim();
+    let match = clean.match(/^(\d{1,2}):(\d{1,2})$/);
 
-        const match =
-            clean.match(
-                /^(\d{1,2}):(\d{2})$/
-            );
+    if (match) {
 
-        if (!match) {
-            return null;
-        }
-
-
-        let hour =
-            Number(match[1]);
-
-        const minute =
-            Number(match[2]);
-
+        const hour = Number(match[1]);
+        const minute = Number(match[2]);
 
         if (
-            hour < 1 ||
-            hour > 12 ||
+            hour < 0 ||
+            hour > 23 ||
             minute < 0 ||
             minute > 59
         ) {
-            return null;
+            return "";
         }
 
+        return (
+            String(hour).padStart(2, "0") +
+            ":" +
+            String(minute).padStart(2, "0")
+        );
+    }
+
+
+    // -----------------------------------------------------
+    // QUICK DOT FORMAT
+    //
+    // 1.2  -> 01:20
+    // 1.5  -> 01:50
+    // 7.05 -> 07:05
+    // 13.5 -> 13:50
+    // -----------------------------------------------------
+
+    match = clean.match(/^(\d{1,2})\.(\d{1,2})$/);
+
+    if (match) {
+
+        const hour = Number(match[1]);
+
+        let minuteText = match[2];
+
+        // .2 = 20
+        // .5 = 50
+        if (minuteText.length === 1) {
+            minuteText += "0";
+        }
+
+        const minute = Number(minuteText);
+
+        if (
+            hour < 0 ||
+            hour > 23 ||
+            minute < 0 ||
+            minute > 59
+        ) {
+            return "";
+        }
+
+        return (
+            String(hour).padStart(2, "0") +
+            ":" +
+            String(minute).padStart(2, "0")
+        );
+    }
+
+
+    // -----------------------------------------------------
+    // HOUR ONLY
+    //
+    // 1  -> 01:00
+    // 7  -> 07:00
+    // 13 -> 13:00
+    // -----------------------------------------------------
+
+    if (/^\d{1,2}$/.test(clean)) {
+
+        const hour = Number(clean);
+
+        if (
+            hour < 0 ||
+            hour > 23
+        ) {
+            return "";
+        }
+
+        return (
+            String(hour).padStart(2, "0") +
+            ":00"
+        );
+    }
+
+
+    return "";
+}
+
+
+// =========================================================
+// CALCULATE TRIP TIME
+// =========================================================
+
+function calculateTripTime() {
+
+    const out = parseTime(
+        outTime.value,
+        outAmPm.value
+    );
+
+    const incoming = parseTime(
+        inTime.value,
+        inAmPm.value
+    );
+
+
+    if (!out || !incoming) {
+
+        totalTripTime.value = "00:00:00";
+
+        return;
+    }
+
+
+    let diff = incoming - out;
+
+
+    // Handle trip passing midnight
+    if (diff < 0) {
+
+        diff += 24 * 60 * 60 * 1000;
+    }
+
+
+    const totalSeconds = Math.floor(
+        diff / 1000
+    );
+
+
+    const hours = Math.floor(
+        totalSeconds / 3600
+    );
+
+
+    const minutes = Math.floor(
+        (totalSeconds % 3600) / 60
+    );
+
+
+    const seconds =
+        totalSeconds % 60;
+
+
+    totalTripTime.value =
+        `${String(hours).padStart(2, "0")}:` +
+        `${String(minutes).padStart(2, "0")}:` +
+        `${String(seconds).padStart(2, "0")}`;
+}
+
+
+// =========================================================
+// PARSE TIME
+// =========================================================
+
+function parseTime(value, ampm) {
+
+    const normalized =
+        normalizeTimeInput(value);
+
+
+    if (!normalized) {
+        return null;
+    }
+
+
+    const [
+        hourText,
+        minuteText
+    ] = normalized.split(":");
+
+
+    let hour = Number(hourText);
+
+    const minute =
+        Number(minuteText);
+
+
+    // 1 - 12 uses AM / PM
+    if (
+        hour >= 1 &&
+        hour <= 12
+    ) {
 
         if (
             ampm === "AM" &&
@@ -344,27 +475,40 @@ document.addEventListener("DOMContentLoaded", () => {
             hour = 0;
         }
 
+
         if (
             ampm === "PM" &&
             hour !== 12
         ) {
             hour += 12;
         }
-
-
-        const date =
-            new Date();
-
-        date.setHours(
-            hour,
-            minute,
-            0,
-            0
-        );
-
-        return date;
-
     }
+
+
+    // 13 - 23 already means 24-hour time
+    if (
+        hour < 0 ||
+        hour > 23 ||
+        minute < 0 ||
+        minute > 59
+    ) {
+        return null;
+    }
+
+
+    const date = new Date();
+
+
+    date.setHours(
+        hour,
+        minute,
+        0,
+        0
+    );
+
+
+    return date;
+}
 
 
     // =========================================================
