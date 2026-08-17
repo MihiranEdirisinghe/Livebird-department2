@@ -1,5 +1,11 @@
 /* =========================================================
-   LIVE BIRD DEPARTMENT - MAIN STYLE
+   LIVE BIRD DEPARTMENT
+   MAIN WEBSITE STYLE
+========================================================= */
+
+
+/* =========================================================
+   RESET
 ========================================================= */
 
 * {
@@ -8,25 +14,39 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f4f7fb;
-    color: #172033;
     min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #f4f7fb;
+
+    color: #172033;
 }
 
 
+
 /* =========================================================
-   NAVIGATION BAR
+   NAVBAR
 ========================================================= */
 
 .navbar {
-    height: 82px;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
+    height: 86px;
 
     display: flex;
     align-items: center;
@@ -34,248 +54,481 @@ body {
 
     padding: 0 6%;
 
-    background: rgba(255, 255, 255, 0.96);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 
-    border-bottom: 1px solid #e5eaf1;
-
-    box-shadow: 0 3px 15px rgba(19, 33, 68, 0.06);
-
-    position: relative;
     z-index: 10;
-}
-
-.company-info h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #123c73;
-    margin-bottom: 4px;
-}
-
-.company-info p {
-    font-size: 12px;
-    color: #778196;
-    letter-spacing: 0.4px;
 }
 
 
 /* =========================================================
-   NAV BUTTONS
+   COMPANY BRAND
+========================================================= */
+
+.company-brand {
+    position: relative;
+    z-index: 11;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.navbar-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.company-info h3 {
+    margin: 0 0 3px;
+
+    color: #123c73;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.company-info p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+.navbar-logo {
+    width: 58px;
+    height: 58px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+.company-info h3 {
+    margin: 0 0 3px;
+
+    color: #123c73;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+
+.company-info p {
+    margin: 0;
+
+    color: #778196;
+
+    font-size: 11px;
+
+    letter-spacing: 0.3px;
+}
+
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
 ========================================================= */
 
 .nav-buttons {
+    position: relative;
+    z-index: 11;
+
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.nav-buttons button {
-    border: none;
-    outline: none;
+.nav-action-btn {
+    min-width: 100px;
+    min-height: 42px;
 
-    padding: 10px 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 
-    border-radius: 8px;
+    padding: 8px 15px;
 
-    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
 
-    color: #34445f;
+    background: rgba(20, 93, 160, 0.90);
+    color: #ffffff;
 
-    font-size: 14px;
-    font-weight: 600;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.13);
+
+    font-size: 13px;
+    font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.25s ease;
+    transition: 0.2s ease;
 }
 
-.nav-buttons button:hover {
-    background: #edf4ff;
-    color: #175ca8;
-}
-
-#loginBtn {
-    background: #155da8;
-    color: white;
-
-    box-shadow: 0 5px 14px rgba(21, 93, 168, 0.18);
-}
-
-#loginBtn:hover {
-    background: #104d8d;
-
+.nav-action-btn:hover {
+    background: #104f8d;
     transform: translateY(-1px);
 }
 
 
-/* =========================================================
-   HERO SECTION
-========================================================= */
-
-.hero {
-    width: 100%;
-    min-height: calc(100vh - 128px);
-
-    display: grid;
-    grid-template-columns: 44% 56%;
-
-    align-items: center;
-
-    background:
-        linear-gradient(
-            90deg,
-            #f8fbff 0%,
-            #f5f9fd 43%,
-            #edf4fa 100%
-        );
-
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   HERO LEFT
-========================================================= */
-
-.hero-left {
-    padding-left: 13%;
-    padding-right: 8%;
-
-    position: relative;
-    z-index: 2;
-}
-
-.logo {
-    width: 110px;
-    height: auto;
-
-    object-fit: contain;
-
-    margin-bottom: 24px;
-}
-
-.hero-left h1 {
-    max-width: 620px;
-
-    font-size: clamp(38px, 4vw, 58px);
-
-    line-height: 1.08;
-
-    font-weight: 750;
-
-    color: #14345f;
-
-    letter-spacing: -1.6px;
-
-    margin-bottom: 18px;
-}
-
-.hero-left > p {
-    max-width: 560px;
-
-    font-size: 17px;
-
-    color: #68758a;
-
-    line-height: 1.7;
-
-    margin-bottom: 34px;
-}
-
-
-/* =========================================================
-   PRIMARY BUTTON
-========================================================= */
-
-.primary-btn {
-    border: none;
-    outline: none;
-
-    background: linear-gradient(
-        135deg,
-        #1767b8,
-        #0d4d8b
-    );
-
-    color: white;
-
-    font-size: 15px;
-    font-weight: 650;
-
-    padding: 14px 25px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 18px rgba(15, 82, 148, 0.22);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-.primary-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 11px 22px rgba(15, 82, 148, 0.28);
-}
-
-.primary-btn:active {
+.nav-action-btn:active {
     transform: translateY(0);
 }
 
 
+
 /* =========================================================
-   HERO RIGHT
+   HERO
 ========================================================= */
 
-.hero-right {
-    height: 100%;
+.hero {
+    width: 100%;
 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    min-height: calc(100vh - 46px);
 
     position: relative;
 
+    display: flex;
+    align-items: center;
+
+    padding-top: 86px;
+
     overflow: hidden;
+
+    background-image:
+        url("../assets/LiveBirdHero.Jpg");
+
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
 }
 
-.hero-right::before {
-    content: "";
 
+
+/* =========================================================
+   HERO OVERLAY
+========================================================= */
+
+.hero-overlay {
     position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 22%;
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        #f3f8fc 0%,
-        rgba(243, 248, 252, 0) 100%
-    );
+    inset: 0;
 
     z-index: 1;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            rgba(226, 240, 252, 0.98) 0%,
+            rgba(233, 244, 253, 0.97) 18%,
+            rgba(241, 248, 253, 0.93) 31%,
+            rgba(246, 250, 253, 0.80) 42%,
+            rgba(239, 247, 253, 0.50) 52%,
+            rgba(225, 240, 251, 0.20) 63%,
+            rgba(220, 237, 249, 0.05) 74%,
+            rgba(220, 237, 249, 0) 84%
+        );
 }
 
-.hero-image {
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 47%;
+
+    max-width: 720px;
+
+    margin-left: 6%;
+
+    padding:
+        45px 0
+        42px;
+}
+
+
+.hero-content h1 {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #123c73;
+
+    font-size:
+        clamp(
+            42px,
+            4vw,
+            62px
+        );
+
+    line-height: 1.04;
+
+    font-weight: 800;
+
+    letter-spacing: -1.8px;
+}
+
+
+
+/* =========================================================
+   HERO ACCENT
+========================================================= */
+
+.hero-accent-line {
+    width: 70px;
+    height: 4px;
+
+    margin:
+        22px 0
+        18px;
+
+    background: #f4ad24;
+
+    border-radius: 100px;
+}
+
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero-description {
+    margin:
+        0 0
+        28px;
+
+    color: #5f6f85;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    font-weight: 400;
+}
+
+
+
+/* =========================================================
+   HERO LOGIN BUTTON
+========================================================= */
+
+.hero-login-btn {
+    min-height: 50px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding:
+        0 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1769aa,
+            #10558f
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(16, 85, 143, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.hero-login-btn .material-icons {
+    font-size: 19px;
+}
+
+
+.hero-arrow {
+    margin-left: 4px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.hero-login-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 11px 25px
+        rgba(16, 85, 143, 0.27);
+}
+
+
+.hero-login-btn:hover
+.hero-arrow {
+    transform:
+        translateX(3px);
+}
+
+
+
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
+
+.hero-features {
     width: 100%;
-    height: 100%;
 
-    min-height: calc(100vh - 128px);
+    max-width: 650px;
 
-    object-fit: cover;
+    display: grid;
 
-    object-position: center;
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
 
-    display: block;
+    gap: 11px;
+
+    margin-top: 38px;
 }
+
+
+
+.hero-feature-card {
+    min-height: 105px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding:
+        14px 15px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    border:
+        1px solid
+        rgba(
+            203,
+            213,
+            225,
+            0.80
+        );
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(
+            15,
+            23,
+            42,
+            0.05
+        );
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.hero-feature-card:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(
+            23,
+            105,
+            170,
+            0.26
+        );
+
+    box-shadow:
+        0 9px 22px
+        rgba(
+            15,
+            23,
+            42,
+            0.09
+        );
+}
+
+
+.feature-icon {
+    color: #1769aa;
+
+    font-size: 27px !important;
+}
+
+
+.hero-feature-card p {
+    margin: 0;
+
+    color: #34445f;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    font-weight: 700;
+}
+
 
 
 /* =========================================================
@@ -286,16 +539,19 @@ footer {
     min-height: 46px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    padding: 10px 20px;
+    padding:
+        10px 20px;
 
-    background: #ffffff;
+    background: #123c73;
 
-    border-top: 1px solid #e6eaf0;
+    border-top:
+        2px solid #ffffff;
 
-    color: #8a94a7;
+    color: #e8e8ea;
 
     font-size: 12px;
 
@@ -303,8 +559,76 @@ footer {
 }
 
 
+
 /* =========================================================
-   MODAL BACKGROUND
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-btn {
+    border: none;
+
+    outline: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1767b8,
+            #0d4d8b
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 650;
+
+    padding:
+        14px 25px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            15,
+            82,
+            148,
+            0.22
+        );
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.primary-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 11px 22px
+        rgba(
+            15,
+            82,
+            148,
+            0.28
+        );
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+
+
+/* =========================================================
+   MODAL BACKDROP
 ========================================================= */
 
 .modal {
@@ -317,24 +641,37 @@ footer {
     width: 100%;
     height: 100%;
 
-    background: rgba(11, 24, 45, 0.58);
-
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-
-    z-index: 999;
-
     align-items: center;
     justify-content: center;
 
     padding: 22px;
+
+    background:
+        rgba(
+            11,
+            24,
+            45,
+            0.58
+        );
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+
+    z-index: 999;
 }
+
 
 .modal.show {
     display: flex;
 
-    animation: fadeIn 0.22s ease;
+    animation:
+        fadeIn
+        0.22s ease;
 }
+
 
 
 /* =========================================================
@@ -343,34 +680,50 @@ footer {
 
 .modal-card {
     width: 100%;
+
     max-width: 480px;
 
-    background: white;
+    background: #ffffff;
 
     border-radius: 16px;
 
-    box-shadow:
-        0 24px 60px rgba(5, 22, 48, 0.25);
-
     overflow: hidden;
 
-    animation: modalIn 0.25s ease;
+    box-shadow:
+        0 24px 60px
+        rgba(
+            5,
+            22,
+            48,
+            0.25
+        );
+
+    animation:
+        modalIn
+        0.25s ease;
 }
 
 
+
 /* =========================================================
-   LOGIN CARD
+   LOGIN MODAL
 ========================================================= */
 
 .login-card {
     max-width: 460px;
 }
 
+
 .login-header {
-    padding: 28px 30px 24px;
+    padding:
+        28px 30px
+        24px;
 
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
 
     background:
@@ -380,40 +733,59 @@ footer {
             #1767b8
         );
 
-    color: white;
+    color: #ffffff;
 }
+
 
 .lock-icon {
     font-size: 23px;
+
     margin-bottom: 10px;
 }
 
+
 .login-header h2 {
+    margin-bottom: 5px;
+
     font-size: 25px;
 
     font-weight: 700;
-
-    margin-bottom: 5px;
 }
+
 
 .login-header p {
     font-size: 13px;
 
-    color: rgba(255, 255, 255, 0.78);
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
 }
+
 
 .chicken-image {
     width: 82px;
     height: 82px;
 
-    object-fit: contain;
-
     margin-left: 20px;
 
-    filter: drop-shadow(
-        0 7px 12px rgba(0, 0, 0, 0.16)
-    );
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 7px 12px
+            rgba(
+                0,
+                0,
+                0,
+                0.16
+            )
+        );
 }
+
 
 
 /* =========================================================
@@ -421,8 +793,11 @@ footer {
 ========================================================= */
 
 .login-body {
-    padding: 28px 30px 30px;
+    padding:
+        28px 30px
+        30px;
 }
+
 
 .login-body label {
     display: block;
@@ -432,80 +807,64 @@ footer {
     color: #34445f;
 
     font-size: 13px;
+
     font-weight: 650;
 }
+
 
 .login-body input {
     width: 100%;
 
     height: 46px;
 
-    border: 1px solid #d8dfeb;
+    margin-bottom: 18px;
+
+    padding:
+        0 13px;
+
+    border:
+        1px solid
+        #d8dfeb;
 
     border-radius: 8px;
 
     outline: none;
 
-    padding: 0 13px;
-
-    margin-bottom: 18px;
-
-    font-family: inherit;
-    font-size: 14px;
+    background: #fbfcfe;
 
     color: #25344d;
 
-    background: #fbfcfe;
+    font-family: inherit;
+
+    font-size: 14px;
 
     transition:
-        border 0.2s ease,
+        border-color 0.2s ease,
         box-shadow 0.2s ease,
         background 0.2s ease;
 }
+
 
 .login-body input::placeholder {
     color: #a4adbb;
 }
 
+
 .login-body input:focus {
     border-color: #377bbb;
 
-    background: white;
+    background: #ffffff;
 
     box-shadow:
-        0 0 0 3px rgba(42, 116, 184, 0.11);
+        0 0 0 3px
+        rgba(
+            42,
+            116,
+            184,
+            0.11
+        );
 }
 
-.full-width {
-    width: 100%;
-}
-
-.cancel-btn {
-    width: 100%;
-
-    border: none;
-
-    background: transparent;
-
-    margin-top: 11px;
-
-    padding: 10px;
-
-    color: #758196;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    border-radius: 8px;
-
-    transition: 0.2s ease;
-}
-
-.cancel-btn:hover {
-    background: #f2f5f8;
-    color: #34445f;
-}
 
 
 /* =========================================================
@@ -516,17 +875,59 @@ footer {
     min-height: 19px;
 
     margin-top: -7px;
+
     margin-bottom: 11px;
 
     color: #c93b3b;
 
     font-size: 12px;
+
     font-weight: 600;
 }
 
 
+
 /* =========================================================
-   INFO / CONTACT MODAL
+   CANCEL BUTTON
+========================================================= */
+
+.cancel-btn {
+    width: 100%;
+
+    margin-top: 11px;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #758196;
+
+    font-family: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.cancel-btn:hover {
+    background: #f2f5f8;
+
+    color: #34445f;
+}
+
+
+
+/* =========================================================
+   INFO / CONTACT MODALS
 ========================================================= */
 
 .small-modal {
@@ -534,6 +935,7 @@ footer {
 
     padding: 31px;
 }
+
 
 .small-modal h2 {
     margin-bottom: 18px;
@@ -543,36 +945,43 @@ footer {
     font-size: 22px;
 }
 
+
 .small-modal > p {
+    margin-bottom: 13px;
+
     color: #66748a;
 
     font-size: 14px;
 
     line-height: 1.7;
-
-    margin-bottom: 13px;
 }
+
 
 .system-info {
     margin-top: 22px;
 
-    padding: 14px 16px;
+    padding:
+        14px 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
 
     background: #f4f7fb;
 
     border-radius: 9px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
 
     color: #67758a;
 
     font-size: 12px;
 }
 
+
 .contact-details {
     margin-top: 20px;
+
     margin-bottom: 22px;
 
     padding: 16px;
@@ -582,48 +991,62 @@ footer {
     border-radius: 9px;
 }
 
+
 .contact-details p {
     margin: 7px 0;
 
-    font-size: 14px;
-
     color: #46546a;
+
+    font-size: 14px;
 }
 
-.contact-details a {
-    text-decoration: none;
 
+.contact-details a {
     color: #1767b8;
 
     font-weight: 600;
+
+    text-decoration: none;
 }
+
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
 
 .close-btn {
     width: 100%;
 
-    border: none;
-
-    background: #155da8;
-
-    color: white;
+    margin-top: 10px;
 
     padding: 12px;
 
+    border: none;
+
     border-radius: 8px;
 
+    background: #155da8;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
     font-size: 14px;
+
     font-weight: 650;
 
     cursor: pointer;
 
-    margin-top: 10px;
-
-    transition: 0.2s ease;
+    transition:
+        background 0.2s ease;
 }
+
 
 .close-btn:hover {
     background: #104d8d;
 }
+
 
 
 /* =========================================================
@@ -639,46 +1062,66 @@ footer {
     to {
         opacity: 1;
     }
+
 }
+
 
 @keyframes modalIn {
 
     from {
         opacity: 0;
-        transform: translateY(18px) scale(0.98);
+
+        transform:
+            translateY(18px)
+            scale(0.98);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
     }
+
 }
 
 
+
 /* =========================================================
-   TABLET RESPONSIVE
+   TABLET
 ========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
 
-    .hero {
-        grid-template-columns: 50% 50%;
+    .hero-content {
+        width: 57%;
+
+        margin-left: 5%;
     }
 
-    .hero-left {
-        padding-left: 9%;
-        padding-right: 7%;
+
+    .hero-content h1 {
+        font-size: 48px;
     }
 
-    .hero-left h1 {
-        font-size: 42px;
+
+    .hero-features {
+        max-width: 450px;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
     }
 
 }
 
 
+
 /* =========================================================
-   MOBILE RESPONSIVE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 760px) {
@@ -686,78 +1129,153 @@ footer {
     .navbar {
         height: auto;
 
-        padding: 16px 5%;
+        padding:
+            14px 5%;
 
         flex-direction: column;
 
-        align-items: flex-start;
+        align-items: stretch;
 
         gap: 14px;
     }
+
+
+    .company-brand {
+        justify-content: center;
+    }
+
+
+    .navbar-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+
+    .company-info h3 {
+        font-size: 15px;
+    }
+
 
     .nav-buttons {
         width: 100%;
     }
 
-    .nav-buttons button {
+
+    .nav-action-btn {
         flex: 1;
+
+        min-width: 0;
+
+        padding:
+            9px 8px;
+
+        font-size: 12px;
     }
+
+
+    .nav-action-btn
+    .material-icons {
+        font-size: 16px;
+    }
+
 
     .hero {
-        grid-template-columns: 1fr;
-
         min-height: auto;
+
+        background-position:
+            70% center;
     }
 
-    .hero-left {
-        padding: 55px 8%;
+
+    .hero-overlay {
+        background:
+            rgba(
+                247,
+                250,
+                253,
+                0.91
+            );
+    }
+
+
+    .hero-content {
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding:
+            60px 7%
+            55px;
 
         text-align: center;
     }
 
-    .logo {
-        width: 90px;
-    }
 
-    .hero-left h1 {
-        font-size: 38px;
-
-        letter-spacing: -1px;
-    }
-
-    .hero-left > p {
+    .hero-content h1 {
         margin-left: auto;
+
         margin-right: auto;
+
+        font-size: 42px;
+
+        letter-spacing: -1.2px;
     }
 
-    .hero-right {
-        height: 420px;
+
+    .hero-accent-line {
+        margin:
+            20px auto
+            18px;
     }
 
-    .hero-image {
-        min-height: unset;
 
-        height: 420px;
+    .hero-description {
+        font-size: 15px;
     }
 
-    .hero-right::before {
-        display: none;
+
+    .hero-features {
+        max-width: 520px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
     }
+
+
+    .hero-feature-card {
+        align-items: center;
+
+        text-align: center;
+    }
+
 
     .login-header {
         padding: 24px;
     }
 
+
     .login-body {
         padding: 24px;
     }
 
+
     .chicken-image {
         width: 65px;
+
         height: 65px;
     }
 
 }
+
 
 
 /* =========================================================
@@ -767,102 +1285,60 @@ footer {
 @media (max-width: 480px) {
 
     .company-info h3 {
-        font-size: 16px;
+        font-size: 14px;
     }
 
-    .hero-left {
-        padding: 45px 6%;
+
+    .company-info p {
+        font-size: 10px;
     }
 
-    .hero-left h1 {
-        font-size: 33px;
+
+    .nav-action-btn {
+        gap: 4px;
+
+        font-size: 11px;
     }
 
-    .hero-left > p {
-        font-size: 15px;
+
+    .hero-content {
+        padding:
+            48px 6%
+            45px;
     }
+
+
+    .hero-content h1 {
+        font-size: 35px;
+    }
+
+
+    .hero-features {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 9px;
+    }
+
+
+    .hero-feature-card {
+        min-height: 95px;
+
+        padding:
+            13px 10px;
+    }
+
 
     .modal {
         padding: 14px;
     }
 
+
     .small-modal {
         padding: 24px;
     }
 
-}
-/* =========================================================
-   TOP NAVIGATION BUTTONS
-========================================================= */
-
-.nav-action-btn {
-    background: #1769aa;
-    color: #ffffff;
-
-    border: none;
-    border-radius: 10px;
-
-    padding: 12px 24px;
-
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow: 0 8px 20px rgba(23, 105, 170, 0.18);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-
-.nav-action-btn:hover {
-    background: #125991;
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 10px 24px rgba(23, 105, 170, 0.28);
-}
-
-
-.nav-action-btn:active {
-    transform: translateY(0);
-}
-
-
-/* Keep spacing between top navigation buttons */
-
-.nav-buttons {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-/* Force all top navigation buttons to same blue style */
-
-.nav-buttons #infoBtn,
-.nav-buttons #contactBtn,
-.nav-buttons #loginBtn {
-    background: #1769aa;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-
-    box-shadow: 0 8px 20px rgba(23, 105, 170, 0.20);
-
-    transition: all 0.25s ease;
-}
-
-.nav-buttons #infoBtn:hover,
-.nav-buttons #contactBtn:hover,
-.nav-buttons #loginBtn:hover {
-    background: #125991;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(23, 105, 170, 0.30);
 }
