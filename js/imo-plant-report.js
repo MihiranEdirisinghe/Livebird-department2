@@ -237,14 +237,25 @@ document.addEventListener("DOMContentLoaded", () => {
         topDaysChart?.setOption({
 
             tooltip: {
-                trigger: "axis"
+                trigger: "axis",
+                axisPointer: {
+                    type: "line"
+                }
+            },
+
+            legend: {
+                data: [
+                    "NOB",
+                    "Weight (kg)"
+                ],
+                top: 0
             },
 
             grid: {
                 left: "3%",
                 right: "4%",
                 bottom: "5%",
-                top: "15%",
+                top: "18%",
                 containLabel: true
             },
 
@@ -254,16 +265,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 boundaryGap: false
             },
 
-            yAxis: {
-                type: "value",
-                name: "NOB Count"
-            },
+            yAxis: [
+                {
+                    type: "value",
+                    name: "NOB Count",
+                    position: "left"
+                },
+                {
+                    type: "value",
+                    name: "Weight (kg)",
+                    position: "right",
+
+                    splitLine: {
+                        show: false
+                    }
+                }
+            ],
 
             series: [
 
                 {
                     name: "NOB",
                     type: "line",
+
+                    yAxisIndex: 0,
+
                     smooth: true,
                     showSymbol: true,
                     symbolSize: 8,
@@ -278,8 +304,35 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
 
                     areaStyle: {
-                        opacity: 0.15
+                        opacity: 0.12
                     },
+
+                    data: []
+                },
+
+                {
+                    name: "Weight (kg)",
+                    type: "line",
+
+                    yAxisIndex: 1,
+
+                    smooth: true,
+                    showSymbol: true,
+                    symbolSize: 8,
+
+                    lineStyle: {
+                        color: "#10b981",
+                        width: 3
+                    },
+
+                    itemStyle: {
+                        color: "#10b981"
+                    },
+
+                    areaStyle: {
+                        color: "rgba(16, 185, 129, 0.15)"
+                    },
+
 
                     data: []
                 }
@@ -565,69 +618,90 @@ document.addEventListener("DOMContentLoaded", () => {
     // TOP 5 DAYS
     // =====================================================
 
-    function getTopFiveDays(data) {
+function getTopFiveDays(data) {
 
-        const grouped = {};
-
-
-        data.forEach(row => {
-
-            const date =
-                AdminCommon.normalizeDate(
-                    row.date
-                );
+    const grouped = {};
 
 
-            if (!date) return;
+    data.forEach(row => {
+
+        const date =
+            AdminCommon.normalizeDate(
+                row.date
+            );
 
 
-            grouped[date] =
-                (
-                    grouped[date] || 0
-                )
-                +
-                AdminCommon.safeNumber(
-                    row.nob
-                );
-
-        });
+        if (!date) return;
 
 
-        const top =
-            Object.entries(grouped)
+        if (!grouped[date]) {
 
-                .sort(
-                    (a, b) =>
-                        b[1] - a[1]
-                )
+            grouped[date] = {
+                nob: 0,
+                weight: 0
+            };
 
-                .slice(0, 5)
-
-                .sort(
-                    (a, b) =>
-                        a[0].localeCompare(
-                            b[0]
-                        )
-                );
+        }
 
 
-        return {
+        grouped[date].nob +=
+            AdminCommon.safeNumber(
+                row.nob
+            );
 
-            dates:
-                top.map(item =>
-                    item[0]
-                ),
 
-            values:
-                top.map(item =>
-                    Number(
-                        item[1].toFixed(2)
+        grouped[date].weight +=
+            AdminCommon.safeNumber(
+                row.weight
+            );
+
+    });
+
+
+    // Select Top 5 days based on highest NOB
+    const top =
+        Object.entries(grouped)
+
+            .sort(
+                (a, b) =>
+                    b[1].nob - a[1].nob
+            )
+
+            .slice(0, 5)
+
+            // Display selected days in date order
+            .sort(
+                (a, b) =>
+                    a[0].localeCompare(
+                        b[0]
                     )
+            );
+
+
+    return {
+
+        dates:
+            top.map(item =>
+                item[0]
+            ),
+
+        nob:
+            top.map(item =>
+                Number(
+                    item[1].nob.toFixed(2)
                 )
+            ),
 
-        };
+        weight:
+            top.map(item =>
+                Number(
+                    item[1].weight.toFixed(2)
+                )
+            )
 
-    }
+    };
+
+}
 
 
     // =====================================================
@@ -762,10 +836,19 @@ document.addEventListener("DOMContentLoaded", () => {
             },
 
             series: [
+
                 {
+                    name: "NOB",
                     data:
-                        topDays.values
+                        topDays.nob
+                },
+
+                {
+                    name: "Weight (kg)",
+                    data:
+                        topDays.weight
                 }
+
             ]
 
         });

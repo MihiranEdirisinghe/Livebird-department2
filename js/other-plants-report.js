@@ -711,7 +711,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const palette = [
             "#010853",
-            "#ffdd00",
+            "#ffc900",
             "#10b981",
             "#D10909",
             "#8b5cf6",

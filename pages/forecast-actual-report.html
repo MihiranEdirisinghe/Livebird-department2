@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="../css/admin-analytics.css">
     <link rel="stylesheet" href="../css/report.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
 </head>
 
 
@@ -511,7 +514,7 @@
 
                     <table
                         id="forecastDetailTable"
-                        class="buyback-report-table"
+                        class="buyback-report-table exportable-table"
                     >
 
 
@@ -746,6 +749,7 @@
     <script src="../js/api.js"></script>
     <script src="../js/admin-common.js"></script>
     <script src="../js/forecast-actual-report.js"></script>
+    <script src="../js/admin-export.js"></script>
 
 </body>
 

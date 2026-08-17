@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     data: [],
 
                     itemStyle: {
-                        color: "#010853",
+                        color: "#480058",
                         borderRadius: [
                             4,
                             4,
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     data: [],
 
                     itemStyle: {
-                        color: "#d97706",
+                        color: "#ff00e6",
                         borderRadius: [
                             4,
                             4,
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             value: 0,
                             name: "To Imo Plant",
                             itemStyle: {
-                                color: "#010853"
+                                color: "#480058"
                             }
                         },
 
@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             value: 0,
                             name: "To Customers",
                             itemStyle: {
-                                color: "#d97706"
+                                color: "#ff00e6"
                             }
                         }
 
@@ -872,7 +872,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             itemStyle: {
                                 color:
-                                    "#010853"
+                                    "#692c7d"
                             }
                         },
 
@@ -888,7 +888,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             itemStyle: {
                                 color:
-                                    "#d97706"
+                                    "#f62cfa"
                             }
                         }
 
